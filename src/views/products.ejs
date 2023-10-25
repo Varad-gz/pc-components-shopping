@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link href="/stylesheet/main.css" rel="stylesheet">
+</head>
+<body class="bg-[#393939] scrollbar-thin scrollbar-track-[#2A2727] scrollbar-thumb-red-500 scrollbar-thumb-rounded-full">
+
+    <div class="min-h-[calc(100vh-80px)]">
+
+        <!--NAVBAR START-->
+        <nav class="text-white bg-[#2A2727] w-auto flex justify-between border-b-[5px] border-red-500 py-[10px] mb-[20px]">
+            <div class="w-20 bg-white rounded-full hover:bg-red-500 ml-[10px]">
+                <a href="/"><img src="/images/monitor.png" alt="" class="px-3 py-3 cursor-pointer overflow-hidden"></a>
+            </div>
+            <div class="flex w-50 w-30 justify-end items-center pr-10">
+                <ul class="flex ">
+                    <li class="mx-2 cursor-pointer text-[20px] hover:text-red-500 "><a href="/products">Products</a></li>
+                    <li class="mx-2 cursor-pointer text-[20px] hover:text-red-500 ">Become a Vendor</li>
+                    <li class="mx-2 cursor-pointer text-[20px] hover:text-red-500 ">Employee Portal</li>
+                    <li class="mx-2 cursor-pointer text-[20px] hover:text-red-500 ">Sign In</li>
+                </ul>
+            </div>
+        </nav>
+        <!--NAVBAR END-->
+
+        <main class="w-auto mx-4">
+
+
+            <!--/products page start-->
+            <% if (isWhat === 'all') { %>
+                <div class="flex flex-col">
+                    <div class="flex justify-center my-4">
+                        <form action="/products/s" autocomplete="off">
+                            <input type="text" name="search" placeholder="Search for products...." class="input-bar">
+                            <input type="submit" value="Search" class="border-b-[5px] border-red-500 shadow-md shadow-black w-[80px] h-[50px] bg-[#2A2727] text-white  hover:bg-red-500 hover:border-[#2A2727]">
+                        </form>
+                    </div>
+                    <div class="m-[20px] w-auto flex overflow-x-scroll scrollbar-thin scrollbar-track-[#2A2727] scrollbar-thumb-red-500 bg-[#2A2727] py-[10px] border-t-[4px] shadow-black shadow-md border-red-500 scrollbar-thumb-rounded-none">
+                        <div class="flex flex-row mx-[20px] my-[5px] justify-center">
+                            <% categories.forEach(element => { %>
+                                <div class="m-[10px]">
+                                    <a href="<%= `/products/${element.category_name}`%>"><div class="w-[190px] h-[100px] bg-white flex justify-center items-center flex-col rounded-lg shadow-lg shadow-gray-600 hover:bg-red-500">
+                                        <img src="<%= element.category_image%>" class="w-[50px]" alt="<%= element.alt_name %>">
+                                        <h3 class="text-[20px] truncate w-[150px]"><%= element.alt_name %></h3>
+                                    </div></a>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <!--/products end-->
+            
+
+            <!--/products/category page start-->
+            <% if (isWhat === 'cat') { %>
+                <div class="flex flex-col">
+                    <div class="flex justify-center my-4">
+                        <form action="/products/<%= cat%>/s" autocomplete="off">
+                            <input type="text" name="search" placeholder="Search in this category...." class="input-bar">
+                            <input type="submit" value="Search" class="border-b-[5px] border-red-500 shadow-md shadow-black w-[80px] h-[50px] bg-[#2A2727] text-white  hover:bg-red-500 hover:border-[#2A2727]">
+                        </form>
+                    </div>
+                    <div class="m-[20px] w-auto flex overflow-x-scroll scrollbar-thin scrollbar-track-[#2A2727] scrollbar-thumb-red-500 bg-[#2A2727] py-[10px] border-t-[4px] shadow-black shadow-md border-red-500 scrollbar-thumb-rounded-none">
+                        <div class="flex flex-row mx-[20px] my-[5px] justify-center">
+                            <% subcategories.forEach(element => { %>
+                                <div class="m-[10px]">
+                                    <a href="<%= `/products/${cat}/${element.sub_category_name}`%>"><div class="w-[100px] h-[100px] bg-white flex justify-center items-center flex-col rounded-lg shadow-lg shadow-gray-600 hover:bg-gray-200">
+                                        <img src="<%= element.sub_category_image%>" class="w-[80px]" alt="<%= element.sub_alt_name %>">
+                                    </div></a>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <!--/products/category end-->
+
+            <% if (isWhat === 'sub') { %>
+                <div class="flex justify-center my-4">
+                    <form action="/products/<%= cat%>/<%= sub%>/s" autocomplete="off">
+                        <input type="text" name="search" placeholder="Search in this sub-category...." class="input-bar">
+                        <input type="submit" value="Search" class="border-b-[5px] border-red-500 shadow-md shadow-black w-[80px] h-[50px] bg-[#2A2727] text-white  hover:bg-red-500 hover:border-[#2A2727]">
+                    </form>
+                </div>
+            <% } %>
+
+            <% if (isWhat === 'search') { %>
+                <h1 class="text-white m-[10px] text-[20px]"><%= resultCount%> Found</h1>
+            <% } %>
+
+
+            <!--LIST OF PRODUCTS-->
+            <div class="flex flex-row my-[30px] justify-center flex-wrap">
+                <% products.forEach(item => {%>
+                    <a href="<%= `/item/${item.product_id}`%>">
+                        <div class="w-[420px] h-[180px] m-[10px] shadow-lg shadow-black flex flex-row bg-[#2A2727] hover:border-b-[5px] hover:border-red-500">
+                            <div class=" w-[120px] flex justify-center items-center"><img class="w-[100px] h-[100px] shadow-md shadow-gray-300" src="<%= item.product_image%>"></div>
+                            <div class="flex flex-col w-[300px] justify-center p-[15px]">
+                                <div class="truncate text-[20px] text-white"><%= item.product_name%></div>
+                                <div class="text-blue-300">&#8377; <%= item.price%></div>
+                                <% if(item.stock > 3) {%>
+                                    <div class="text-green-500">In stock</div>
+                                <%} else {%>
+                                    <div class="text-red-500">Stock left : <%= item.stock%></div>
+                                <%}%>
+                                <div class="text-gray-400">Sold by <%= item.organization_name%></div>
+                            </div>        
+                        </div>
+                    </a>
+                <%})%>
+            </div>
+            <!--LIST OF PRODUCTS END-->
+
+
+        </main>
+    </div>
+
+    <!--FOOTER START-->
+    <footer class="text-white bg-[#2A2727] border-t-[5px] border-red-500 h-[80px] bottom-0 w-full">
+        <p class="flex justify-center py-[20px] text-[20px]">Tybbaca Project</p>
+    </footer>
+    <!--FOOTER END-->
+
+
+</body>
+</html>

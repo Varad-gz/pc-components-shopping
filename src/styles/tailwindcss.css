@@ -6,4 +6,7 @@
     .text-shadow{
         text-shadow: 5px 0 10px turquoise;
     }
+    .input-bar {
+        @apply border-b-[5px] border-red-500 w-[500px] h-[50px] px-5 mx-0 bg-[#2A2727] text-white placeholder-white focus:outline-none focus:bg-red-500 focus:border-[#2A2727] shadow-md shadow-black hover:bg-red-500 hover:border-[#2A2727];
+    }
 }

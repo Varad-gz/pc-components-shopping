@@ -1,10 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./public/webpages/*.html",
-            "./src/views/*.ejs"],
+            "./src/views/*.ejs",],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'tall': { 'raw': '(max-height: 100vh)' },
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
 
