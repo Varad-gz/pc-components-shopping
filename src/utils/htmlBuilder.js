@@ -54,6 +54,23 @@ module.exports = {
         return newSelect;
     },
 
+    createSelectForCategoriesVendor: (data) => {
+        let newSelect = `<div class="w-full flex flex-row my-[20px]">
+        <div class="bordergradient w-full h-[50px]">
+        <select id="${data[0].category_depth}" name="${data[0].category_depth}" onchange="getThisSub(this.value, this.id)" class="formfield h-[45px]" required>
+        <option value="">Select the Category</option>
+        <option value="new" class="bg-red-500 text-white">Add a New Category</option>
+        `;
+
+        const newOption = data.map(element => {
+            return `<option value="${element.category_id}">${element.alt_name}</option>`;
+        }).join('');
+
+        newSelect += newOption + `</select> </div> </div>`;
+
+        return newSelect;
+    },
+
     createAddPopupForCategories: (data) => {
         let parentCatInfo;
 

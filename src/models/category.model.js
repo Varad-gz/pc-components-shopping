@@ -1,5 +1,5 @@
 const {pquery} = require('../utils/promisified');
-const sql_db = require('../models/database');
+const sql_db = require('./database');
 
 function Category(catObj) {
     this.id = catObj.id;
@@ -43,7 +43,7 @@ Category.prototype.update = async function() {
 module.exports = {
     getRootCategory : () => {
         return new Promise((resolve, reject) => {
-            sql_db.query("select category_id, alt_name from new_category where category_depth = 0;", (err, result) => {
+            sql_db.query("select category_id, category_name, alt_name from new_category where category_depth = 0;", (err, result) => {
                 if(err) reject(err)
                 resolve(result);
             });

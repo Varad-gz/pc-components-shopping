@@ -1,14 +1,16 @@
-const addProductsModel = require('../../../models/vendor/vendorDashboardModels/addProducts.model')
+//const addProductsModel = require('../../../models/vendor/vendorDashboardModels/addProducts.model')
+const {getRootCategory, getCategoriesWithRef} = require('../../../models/category.model');
+const {Product} = require('../../../models/product.model');
 
 module.exports = {
 
     // This will get category list in the add products menu
-    selCatPanel : async (req, res) => {
+    getRootPage : async (req, res) => {
         try {
-            const result = await addProductsModel.getCategories();
+            const rootCat = await getRootCategory();
             res.render('content/vendor/vendorDashboardContents/addProducts', {
                 title: 'Add Product',
-                rootCat : result,
+                rootCat : rootCat,
                 scripts: ['/scripts/addProductsPublic.js'],
                 loggedIn: req.body.loggedIn
             });
@@ -17,11 +19,11 @@ module.exports = {
         }
     },
 
-    // This will get subcategory list in the add products menu
-    selSubPanel : async (req, res) => {
+    getCat : async (req, res) => {
         try {
-            const result = await addProductsModel.getSubs(req.params.id);
-            res.send(result);
+            const catId = req.query.id;
+            const cat = await getCategoriesWithRef(catId);
+            res.send(cat);
         } catch (err) {
             console.log(err);
         }
@@ -29,12 +31,21 @@ module.exports = {
 
     addProduct : async (req, res) => {
         try {
-            const prod = addProductsModel.Product;
-            let newProduct = new prod(req.body)
+            let newProduct = new Product(req.body)
             await newProduct.add();
-            res.send('Product successfully added!!');
+            const resInfo = {
+                type: 'alert',
+                message: 'Product added successfully...',
+                redirectLink: '/vendor/dashboard'
+            }
+            res.json(resInfo);
         } catch (err) {
-            console.log(err);
+            const resInfo = {
+                type: 'alert',
+                message: ['Error Message', 'Process Failed!'],
+                redirectLink: '/vendor/dashboard/add-product'
+            }
+            res.json(resInfo);
         }
     }
 

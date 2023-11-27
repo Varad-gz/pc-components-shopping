@@ -1,5 +1,5 @@
-const {pquery} = require('../../utils/promisified');
-const sql_db = require('../database');
+const {pquery} = require('../utils/promisified');
+const sql_db = require('./database');
 
 function User(userObj) {
     this.fname = userObj.fname,
@@ -44,7 +44,7 @@ User.prototype.addUser = function (personalInfoID) {
 
 module.exports = {
     checkUserExists : async (email) => {
-        sql_query = "select password from customers where email = ?;";
+        sql_query = "select password, first_name, last_name, customer_id from customers where email = ?;";
         try {
             return await pquery(sql_query, email);
         } catch (err) {

@@ -4,7 +4,7 @@ const router = express.Router();
 const adminController = require('../../controllers/admin/admin.controller');
 
 const adminDashboardRoute = require('./adminDashboard.route');
-const { forAdmin } = require('../../middleware/isAuthenticated');
+const { forAdmin } = require('../../middleware/authentication.middleware');
 
 router.get('/login', adminController.getLoginPage)
 router.post('/login', adminController.authenticateUser)

@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const ejsLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const {ifAuthenticated} = require('./src/middleware/ifAuthenticated');
+const {ifAuthenticated} = require('./src/middleware/authentication.middleware');
 
 const flash = require('express-flash');
 const {flashThis} = require('./src/middleware/flashMessage');

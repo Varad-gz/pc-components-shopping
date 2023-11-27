@@ -1,11 +1,11 @@
-const manageProductCategoryModel = require('../../../models/admin/adminDashboardModels/manageProductsCategory.model');
-const {Category} = require('../../../models/category');
+//const manageProductCategoryModel = require('../../../models/admin/adminDashboardModels/manageProductsCategory.model');
+const Category = require('../../../models/category.model');
 
 module.exports = {
 
     getRoot : async (req, res) => {
         try{
-            const rootCat = await manageProductCategoryModel.getRootCategory();
+            const rootCat = await Category.getRootCategory();
             res.render('content/admin/adminDashboard/manageProductsCategory', {
                 title: 'Manage Categories',
                 scripts: ['/scripts/manageProductsPublic.js', '/scripts/commonFunctions.js'],
@@ -21,7 +21,7 @@ module.exports = {
     getCat : async (req, res) => {
         try {
             const catId = req.query.id;
-            const cat = await manageProductCategoryModel.getCategoriesWithRef(catId);
+            const cat = await Category.getCategoriesWithRef(catId);
             res.send(cat);
         } catch (err) {
             console.log(err);
@@ -31,7 +31,7 @@ module.exports = {
     getCatForEdit : async (req, res) => {
         try {
             const catId = req.query.id;
-            const cat = await manageProductCategoryModel.getCategoryInfo(catId);
+            const cat = await Category.getCategoryInfo(catId);
             res.send(cat);
         } catch (err) {
             throw err;
@@ -41,7 +41,7 @@ module.exports = {
     applyEditChanges : async (req, res) => {
         try {
             const catObj = req.body;
-            let editCat = new Category(catObj);
+            let editCat = new Category.Category(catObj);
             await editCat.update();
             const resInfo = {
                 type: 'alert',
@@ -62,7 +62,7 @@ module.exports = {
     addNewCategory : async (req, res) => {
         try {
             const catObj = req.body;
-            let newCat = new Category(catObj);
+            let newCat = new Category.Category(catObj);
             if(catObj.depth === 0){
                 await newCat.add();
             } else{
@@ -87,7 +87,7 @@ module.exports = {
     getCatForAdd : async (req, res) => {
         try {
             const catId = req.query.id;
-            const cat = await manageProductCategoryModel.getCategoryInfo(catId);
+            const cat = await Category.getCategoryInfo(catId);
             res.send(cat);
         } catch (err) {
             console.log(err);
@@ -97,7 +97,7 @@ module.exports = {
     deleteConditions : async (req, res) => {
         try {
             const catId = req.body.category_id;
-            await manageProductCategoryModel.deleteCategory(catId);
+            await Category.deleteCategory(catId);
             const resInfo = {
                 type: 'alert',
                 message: 'Category deleted successfully...',

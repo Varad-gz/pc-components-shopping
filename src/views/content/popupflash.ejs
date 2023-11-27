@@ -29,10 +29,10 @@
 <% } else if (locals.logout) { %>
     <span class="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-20 h-[100vh] flex justify-center"></span>
     <span class="fixed top-[20px] left-[50%] translate-x-[-50%] bg-white h-fit w-fit rounded-lg shadow-lg shadow-black flex justify-center flex-col items-center">
-        <span class="w-[100%] text-[20px] text-center p-[30px] pb-[10px]"><%- logout %></span>
+        <span class="w-[100%] text-[20px] text-center p-[30px] pb-[10px]">Want to log out?</span>
         <span class="w-[100] flex flex-row my-[20px]">
             <button class="style1button w-fit px-[15px] py-[5px] mr-[10px] h-fit" type="button" onclick="closePopup()">Close</button>
-            <button class="style1button w-fit px-[10px] h-[40px]" type="button"><a href="/admin/logout">Logout</a></button>
+            <button class="style1button w-fit px-[10px] h-[40px]" type="button"><a href="<%- logout %>">Logout</a></button>
         </span>
     </span>
     <script>

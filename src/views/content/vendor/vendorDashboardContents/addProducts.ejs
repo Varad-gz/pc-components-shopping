@@ -2,9 +2,9 @@
     <div class="w-[500px] py-[5px] bordergradient overflow-hidden">
     <div class="w-full bg-white p-[30px] flex justify-end items-center flex-col">
         <div class="text-[20px]">Add Product</div>
-        <form action="" method="post" class="w-full">
-            <div class="bordergradient w-full h-[43px] my-[20px] overflow-hidden">
-                <select id="0" name="catfor0" onchange="getThisSub(this.value, this.id)" class="formfield h-[40px]">
+        <form action="/api/proxy/postproddata" method="post" class="w-full">
+            <div class="bordergradient w-full h-[50px] my-[20px] overflow-hidden">
+                <select id="0" name="0" onchange="getThisSub(this.value, this.id)" class="formfield h-[45px]" required>
                     <option value="">Select the Category</option>
                     <% rootCat.forEach(element => { %>
                         <option value="<%= element.category_id%>"><%= element.alt_name%></option>
@@ -12,17 +12,17 @@
                 </select>
             </div>
             <span id="subcategories"></span>
-    
+
             <div class="bordergradient w-full h-[43px] my-[20px] overflow-hidden">
-                <input type="text" id="txtstyle1" placeholder="Name of the Product..." name="prodName" class="formfield h-[40px]" required>
+                <input type="text" id="prodName" placeholder="Name of the Product..." name="prodName" class="formfield h-[40px]" required>
             </div>
     
             <div class="flex w-full h-[45px] my-[20px]">
                 <div class="bordergradient w-full h-[43px] overflow-hidden mr-[20px]">
-                    <input type="text" id="txtstyle1" placeholder="Price of the Product..." name="prodPrice" class="formfield h-[40px]" required>
+                    <input type="text" id="prodPrice" placeholder="Price of the Product..." name="prodPrice" class="formfield h-[40px]" required>
                 </div>
                 <div class="bordergradient w-full h-[43px] overflow-hidden">
-                    <input type="text" id="txtstyle1" placeholder="Quantity..." name="prodQuantity" class="formfield h-[40px]" required>
+                    <input type="text" id="prodQuantity" placeholder="Quantity..." name="prodQuantity" class="formfield h-[40px]" required>
                 </div>
             </div>
     
@@ -31,11 +31,11 @@
             </div> 
     
             <div class="bordergradient w-full h-[43px] overflow-hidden my-[20px]">
-                <input type="file" name="prodImage" id="filestyle1" class="bg-white w-full h-[40px] rounded-t-lg focus:outline-none focus:bg-slate-50 hover:bg-slate-50 style1filebutton" required>
+                <input type="file" name="prodImage" accept=".jpg,.jpeg,.png" id="filestyle1" class="bg-white w-full h-[40px] rounded-t-lg focus:outline-none focus:bg-slate-50 hover:bg-slate-50 style1filebutton" required>
             </div>
     
             <div class="flex w-full h-[45px] my-[20px]">
-                <button id="btnstyle1" type="reset" onclick="displaythisval('')" class="style1button w-full h-[40px] mr-[20px]">Clear</button>
+                <button id="btnstyle1" type="reset" onclick="resetSel()" class="style1button w-full h-[40px] mr-[20px]">Clear</button>
                 <button id="btnstyle1" type="submit" class="style1button w-full h-[40px]">Submit</button>
             </div>
 
