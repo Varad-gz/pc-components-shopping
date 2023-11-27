@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/public/stylesheet/main.css" rel="stylesheet">
+</head>
+<body class="bg-[#f1f2f4] scrollbar-thin scrollbar-track-[#2A2727] scrollbar-thumb-red-500 scrollbar-thumb-rounded-full">
+    
+    <div class="min-h-[calc(100vh-80px)]">
+        <!--NAVBAR START-->
+        <nav class="flex justify-center pt-[10px] relative">
+            <div class="bordergradient w-[80px] h-[80px] rounded-full absolute p-[5px] my-[10px] left-[16%]">
+                <div class="bg-white hover:bg-slate-300 cursor-pointer w-full rounded-full overflow-hidden">
+                    <img src="../images/navbar/logored.svg" alt="logo" class="m-[10px]">
+                </div>
+            </div>
+            <div class="bordergradient shadow-md shadow-black rounded-full w-2/3 h-[60px] m-[20px] flex items-center">
+                <div class="w-full h-[50px] bg-white rounded-full my-[5px] mx-[5px] flex justify-end items-center">
+                    <div class="flex justify-center bg-red-500 shadow-md hover:bg-red-600 active:bg-red-700 active:shadow-sm active:shadow-black shadow-black rounded-lg text-white text-[20px] w-[200px] h-[30px] mr-[20px]"><a href="/browse">Browse Products</a></div>
+                    <div class="relative">
+                        <div>
+                          <img src="../images/navbar/menu.png" class=" mr-[20px] w-[30px] h-[30px]" onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
+                        </div>
+                        <div id="options-menu-items" hidden onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
+                            <div class="flex flex-col absolute w-[200px] shadow-lg shadow-black">
+                                <a href="#" class="bg-white hover:bg-slate-200 p-[10px]">Option 1</a>
+                                <a href="#" class="bg-white hover:bg-slate-200 p-[10px]">Option 2</a>
+                                <a href="#" class="bg-white hover:bg-slate-200 p-[10px]">Option 3</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--NAVBAR END-->
+
+
+        <main class="w-auto mx-4 flex justify-center mb-[20px]">
+            <div class="bordergradient w-[420px] h-[180px] overflow-hidden">
+                <div class="bg-white w-full h-[170px] flex flex-row">
+                    <div class="w-[140px] h-[170px] flex justify-center items-center border-r-[1px] border-gray-400">
+                        <div class="w-[120px] h-[120px]">
+                            <img src="../images/products/1660.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="w-[270px] pl-[10px] pt-[5px] h-[170px] flex flex-col">
+                        <div class="w-full line-clamp-2 text-[20px]">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus, eum? Adipisci suscipit repudiandae eveniet eos autem, nobis aliquid, ab accusamus commodi voluptates fugit dolor eius sed iure ratione excepturi animi voluptatum odio, ducimus ex. Alias hic nisi quidem assumenda, molestiae temporibus inventore similique nemo quis corporis pariatur ex molestias vero?</div>
+                        <div class="w-full mt-[10px] pt-[10px] text-[20px] border-t-[1px] border-gray-400">Rs. 40000000</div>
+                        <div class="w-full text-[15px]"><span class="text-green-700">Instock</span>/<span class="text-orange-600">Stock Left: 1</span>/<span class="text-red-600">Out of Stock</span></div>
+                        <div class="w-full text-[15px] text-gray-600">Sold by Vendor1</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <script src="/scripts/addProductsPublic.js"></script>
+
+    </div>
+    <footer class="w-full h-[80px] flex justify-center">
+        <div class="bg-gradient-to-r from-red-500 to-[#c32b2b] w-full h-[80px] flex items-center">
+            <div class="w-full h-[70px] bg-white flex justify-center mx-[5px] items-center">
+                TYBBA(CA) Project
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    
+    </script>
+
+</body>
+</html>

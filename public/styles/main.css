@@ -664,6 +664,10 @@ video {
   bottom: 0px;
 }
 
+.bottom-\[10px\] {
+  bottom: 10px;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -672,8 +676,8 @@ video {
   left: 16%;
 }
 
-.left-\[50\%\] {
-  left: 50%;
+.left-\[33\%\] {
+  left: 33%;
 }
 
 .right-0 {
@@ -684,8 +688,20 @@ video {
   top: 0px;
 }
 
+.top-\[30px\] {
+  top: 30px;
+}
+
 .top-\[20px\] {
   top: 20px;
+}
+
+.left-\[50\%\] {
+  left: 50%;
+}
+
+.bottom-\[20px\] {
+  bottom: 20px;
 }
 
 .m-\[10px\] {
@@ -808,10 +824,6 @@ video {
   height: 150px;
 }
 
-.h-\[153px\] {
-  height: 153px;
-}
-
 .h-\[155px\] {
   height: 155px;
 }
@@ -822,6 +834,10 @@ video {
 
 .h-\[180px\] {
   height: 180px;
+}
+
+.h-\[200px\] {
+  height: 200px;
 }
 
 .h-\[240px\] {
@@ -868,21 +884,13 @@ video {
   height: 80px;
 }
 
-.h-fit {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
 .h-full {
   height: 100%;
 }
 
-.h-\[42px\] {
-  height: 42px;
-}
-
-.h-\[47px\] {
-  height: 47px;
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .min-h-\[calc\(100vh-100px\)\] {
@@ -903,10 +911,6 @@ video {
 
 .w-\[1000px\] {
   width: 1000px;
-}
-
-.w-\[100\] {
-  width: 100;
 }
 
 .w-\[100px\] {
@@ -945,8 +949,16 @@ video {
   width: 30px;
 }
 
+.w-\[33\%\] {
+  width: 33%;
+}
+
 .w-\[420px\] {
   width: 420px;
+}
+
+.w-\[490px\] {
+  width: 490px;
 }
 
 .w-\[500px\] {
@@ -973,6 +985,10 @@ video {
   width: 80px;
 }
 
+.w-\[90\%\] {
+  width: 90%;
+}
+
 .w-auto {
   width: auto;
 }
@@ -984,18 +1000,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[700px\] {
-  width: 700px;
-}
-
-.w-\[5px\] {
-  width: 5px;
-}
-
-.w-\[00px\] {
-  width: 00px;
 }
 
 .translate-x-\[-50\%\] {
@@ -1185,11 +1189,6 @@ video {
   padding-right: 10px;
 }
 
-.px-\[15px\] {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 .px-\[5px\] {
   padding-left: 5px;
   padding-right: 5px;
@@ -1203,6 +1202,16 @@ video {
 .py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.px-\[15px\] {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .py-\[5px\] {
@@ -1226,16 +1235,16 @@ video {
   padding-right: 20px;
 }
 
-.pt-0 {
-  padding-top: 0px;
-}
-
 .pt-\[10px\] {
   padding-top: 10px;
 }
 
 .pt-\[5px\] {
   padding-top: 5px;
+}
+
+.pt-0 {
+  padding-top: 0px;
 }
 
 .text-center {
@@ -1305,6 +1314,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-60 {
+  opacity: 0.6;
 }
 
 .opacity-20 {

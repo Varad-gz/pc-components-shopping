@@ -1,0 +1,98 @@
+<main class="w-auto mx-4">
+    
+    <% if (isWhat === 'search') { %>
+        <h1 class="text-white m-[10px] text-[20px]"><%= resultCount%> Found</h1>
+    <% } %>
+
+
+    <!--LIST OF browse-->
+    <div class="flex flex-row my-[30px] justify-center flex-wrap">
+        <% products.forEach(element => { %>
+            <a href="/item/<%= element.product_id%>">
+                <div class="bordergradient shadow-lg w-[420px] h-[180px] overflow-hidden mr-[20px] mb-[20px]">
+                    <div class="bg-white w-full h-[170px] flex flex-row">
+                        <div class="w-[140px] h-[170px] flex justify-center items-center border-r-[1px] border-gray-200">
+                            <div class="w-[120px] h-[120px]">
+                                <img src="<%= element.product_image%>">
+                            </div>
+                        </div>
+                        <div class="w-[270px] pl-[10px] pt-[5px] h-[170px] flex flex-col">
+                            <div class="w-full line-clamp-2 text-[20px]"><%= element.product_name%></div>
+                            <div class="w-full mt-[10px] pt-[10px] text-[20px] border-t-[1px] border-gray-200">&#8377; <%= element.price%></div>
+                            <div class="w-full text-[15px]">
+                                <% if (element.stock > 5) { %>
+                                    <span class="text-green-700">Instock</span>
+                                <% } else if (element.stock > 0) { %>
+                                    <span class="text-orange-600">Stock Left: <%= element.stock%></span>
+                                <% } else { %>
+                                <span class="text-red-600">Out of Stock</span>
+                                <% } %>
+                            </div>
+                            <div class="w-full text-[15px] text-gray-600">Sold by <%= element.organization_name%></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <% }) %>
+    </div>
+
+    <!--LIST OF browse END-->
+
+
+</main>
+
+<!--/browse page start
+<% if (isWhat === 'all') { %>
+    <div class="flex flex-col">
+        <div class="flex justify-center my-4">
+            <form action="/browse/s" autocomplete="off">
+                <input type="text" name="search" placeholder="Search for products...." class="input-bar">
+                <input type="submit" value="Search" class="border-b-[5px] border-red-500 shadow-md shadow-black w-[80px] h-[50px] bg-[#2A2727] text-white  hover:bg-red-500 hover:border-[#2A2727]">
+            </form>
+        </div>
+        <div class="m-[20px] w-auto flex overflow-x-scroll scrollbar-thin scrollbar-track-[#2A2727] scrollbar-thumb-red-500 bg-[#2A2727] py-[10px] border-t-[4px] shadow-black shadow-md border-red-500 scrollbar-thumb-rounded-none">
+            <div class="flex flex-row mx-[20px] my-[5px] justify-center">
+                <% categories.forEach(element => { %>
+                    <div class="m-[10px]">
+                        <a href="<%= `/browse/${element.category_name}`%>"><div class="w-[190px] h-[100px] bg-white flex justify-center items-center flex-col rounded-lg shadow-lg shadow-gray-600 hover:bg-red-500">
+                            <img src="<%= element.category_image%>" class="w-[50px]" alt="<%= element.alt_name %>">
+                            <h3 class="text-[20px] truncate w-[150px]"><%= element.alt_name %></h3>
+                        </div></a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<% if (isWhat === 'cat') { %>
+    <div class="flex flex-col">
+        <div class="flex justify-center my-4">
+            <form action="/browse/<%= cat%>/s" autocomplete="off">
+                <input type="text" name="search" placeholder="Search in this category...." class="input-bar">
+                <input type="submit" value="Search" class="border-b-[5px] border-red-500 shadow-md shadow-black w-[80px] h-[50px] bg-[#2A2727] text-white  hover:bg-red-500 hover:border-[#2A2727]">
+            </form>
+        </div>
+        <div class="m-[20px] w-auto flex overflow-x-scroll scrollbar-thin scrollbar-track-[#2A2727] scrollbar-thumb-red-500 bg-[#2A2727] py-[10px] border-t-[4px] shadow-black shadow-md border-red-500 scrollbar-thumb-rounded-none">
+            <div class="flex flex-row mx-[20px] my-[5px] justify-center">
+                <% subcategories.forEach(element => { %>
+                    <div class="m-[10px]">
+                        <a href="<%= `/browse/${cat}/${element.sub_category_name}`%>"><div class="w-[100px] h-[100px] bg-white flex justify-center items-center flex-col rounded-lg shadow-lg shadow-gray-600 hover:bg-gray-200">
+                            <img src="<%= element.sub_category_image%>" class="w-[80px]" alt="<%= element.sub_alt_name %>">
+                        </div></a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+
+<% if (isWhat === 'sub') { %>
+    <div class="flex justify-center my-4">
+        <form action="/browse/<%= cat%>/<%= sub%>/s" autocomplete="off">
+            <input type="text" name="search" placeholder="Search in this sub-category...." class="input-bar">
+            <input type="submit" value="Search" class="border-b-[5px] border-red-500 shadow-md shadow-black w-[80px] h-[50px] bg-[#2A2727] text-white  hover:bg-red-500 hover:border-[#2A2727]">
+        </form>
+    </div>
+<% } %>-->

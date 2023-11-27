@@ -1,0 +1,45 @@
+<main class="w-auto mx-4 flex justify-center mb-[20px]">
+    <div class="w-[500px] py-[5px] bordergradient overflow-hidden">
+    <div class="w-full bg-white p-[30px] flex justify-end items-center flex-col">
+        <div class="text-[20px]">Add Product</div>
+        <form action="" method="post" class="w-full">
+            <div class="bordergradient w-full h-[43px] my-[20px] overflow-hidden">
+                <select id="0" name="catfor0" onchange="getThisSub(this.value, this.id)" class="formfield h-[40px]">
+                    <option value="">Select the Category</option>
+                    <% rootCat.forEach(element => { %>
+                        <option value="<%= element.category_id%>"><%= element.alt_name%></option>
+                    <% }) %>
+                </select>
+            </div>
+            <span id="subcategories"></span>
+    
+            <div class="bordergradient w-full h-[43px] my-[20px] overflow-hidden">
+                <input type="text" id="txtstyle1" placeholder="Name of the Product..." name="prodName" class="formfield h-[40px]" required>
+            </div>
+    
+            <div class="flex w-full h-[45px] my-[20px]">
+                <div class="bordergradient w-full h-[43px] overflow-hidden mr-[20px]">
+                    <input type="text" id="txtstyle1" placeholder="Price of the Product..." name="prodPrice" class="formfield h-[40px]" required>
+                </div>
+                <div class="bordergradient w-full h-[43px] overflow-hidden">
+                    <input type="text" id="txtstyle1" placeholder="Quantity..." name="prodQuantity" class="formfield h-[40px]" required>
+                </div>
+            </div>
+    
+            <div class="bordergradient w-full h-[153px] my-[20px] overflow-hidden">
+                <textarea id="areastyle1" name="prodDesc" placeholder="Enter the Product Description..." class="formfield h-[150px] resize-none" required></textarea>
+            </div> 
+    
+            <div class="bordergradient w-full h-[43px] overflow-hidden my-[20px]">
+                <input type="file" name="prodImage" id="filestyle1" class="bg-white w-full h-[40px] rounded-t-lg focus:outline-none focus:bg-slate-50 hover:bg-slate-50 style1filebutton" required>
+            </div>
+    
+            <div class="flex w-full h-[45px] my-[20px]">
+                <button id="btnstyle1" type="reset" onclick="displaythisval('')" class="style1button w-full h-[40px] mr-[20px]">Clear</button>
+                <button id="btnstyle1" type="submit" class="style1button w-full h-[40px]">Submit</button>
+            </div>
+
+        </form>
+    </div>
+    </div>
+</main>

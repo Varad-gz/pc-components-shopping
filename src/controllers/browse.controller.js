@@ -1,5 +1,4 @@
-const prodModel = require('../models/products.model');
-const { search } = require('../routes/home.route');
+const prodModel = require('../models/browse.model');
 
 module.exports = {
 
@@ -7,7 +6,15 @@ getProductsPage : async(req, res) => {
     try {
         const cats = await prodModel.getCategories();
         const items = await prodModel.getItems();
-        res.render('products', {isWhat : 'all', categories : cats, products : items})
+
+        res.render('content/browse', {
+            title: 'Browse', 
+            isWhat : 'all', 
+            categories : cats, 
+            products : items,
+            loggedIn: req.body.loggedIn
+        });
+
     } catch(err) {
         console.log(err)
     }
@@ -18,7 +25,13 @@ getCategoryPage : async(req, res) => {
         const cat = req.params.category;
         const subs = await prodModel.getSubs(cat);
         const items = await prodModel.getItemsByCat(cat);
-        res.render('products', {isWhat : 'cat', cat : cat , subcategories : subs, products : items})
+        res.render('browse', {
+            isWhat : 'cat', 
+            cat : cat , 
+            subcategories : subs, 
+            products : items,
+            loggedIn: req.body.loggedIn
+        })
     } catch(err) {
         console.log(err)
     }
@@ -29,7 +42,7 @@ getSubsPage : async(req, res) => {
         const cat = req.params.category;
         const sub = req.params.sub;
         const items = await prodModel.getItemsBySub(cat, sub);
-        res.render('products', {isWhat : 'sub', cat : cat, sub : sub, products : items})
+        res.render('browse', {isWhat : 'sub', cat : cat, sub : sub, products : items})
     } catch(err) {
         console.log(err)
     }
@@ -39,7 +52,7 @@ findInProductsPage : async(req, res) => {
     try {
         const s = req.query.search;
         const items = await prodModel.findItems(s);
-        res.render('products', {isWhat : 'search', resultCount : items.length, products : items})
+        res.render('browse', {isWhat : 'search', resultCount : items.length, products : items})
     } catch(err) {
         console.log(err)
     }
@@ -50,7 +63,7 @@ findInCategoryPage : async(req, res) => {
         const cat = req.params.category;
         const s = req.query.search;
         const items = await prodModel.findItemsByCat(cat, s);
-        res.render('products', {isWhat : 'search', resultCount : items.length, products : items})
+        res.render('browse', {isWhat : 'search', resultCount : items.length, products : items})
     } catch(err) {
         console.log(err)
     }
@@ -62,7 +75,7 @@ findInSubsPage : async(req, res) => {
         const sub = req.params.sub;
         const s = req.query.search;
         const items = await prodModel.findItemsBySub(cat, sub, s);
-        res.render('products', {isWhat : 'search', resultCount : items.length, products : items})
+        res.render('browse', {isWhat : 'search', resultCount : items.length, products : items})
     } catch(err) {
         console.log(err)
     }

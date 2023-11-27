@@ -1,0 +1,29 @@
+<main class="w-auto mx-4 flex flex-col">
+    <% data.forEach(element => { %>
+        <div class="flex flex-row">
+            <div class="w-[300px]"><img src="<%= element.product_image%>" class="shadow-md shadow-black rounded-lg w-[300px] h-[240px]">
+                <div>
+                    <form action="/item?id=<%= id%>" method="post"><button type="button"class="style1button w-full mt-[20px] h-[40px] mr-[20px]">Add to Card</button></form>
+                </div>
+            </div>
+            <div class="w-full h-[300px] ml-[20px] pl-[10px] bordergradient shadow-lg shadow-black overflow-hidden">
+                <div class="w-full h-full bg-white p-[30px]">
+                    <div class="text-[20px] w-full"><%= element.product_name%></div>
+                    <div class="text-gray-500 text-[20px] my-[20px]">Price : &#8377; <%= element.price%></div>
+                    <% if(element.stock > 3) {%>
+                        <div class="text-green-500">In stock</div>
+                    <%} else {%>
+                        <div class="text-red-500">Stock left : <%= element.stock%></div>
+                    <%}%>
+                    <div class="text-gray-400 text-[15px]">Sold by <%= element.organization_name%></div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full px-[5px] mt-[20px] bordergradient shadow-lg shadow-black overflow-hidden">
+            <div class="w-full bg-white p-[30px]">
+                <div class=" mb-[10px] w-[270px]"><h1 class="text-[20px]">Product Description</h1></div>
+                <p class="text-[16px] text-gray-500"><%= element.product_description%></p>
+            </div>
+        </div>
+    <% }) %>
+</main>

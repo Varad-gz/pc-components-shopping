@@ -1,0 +1,6 @@
+<title><%- title %></title>
+<link rel="stylesheet" href="stylesheet/main.css">
+<script src="scripts/navbarmenu.js"></script>
+<% scripts.forEach(element => { %>
+    <script src="<%= element%>" type="text/javascript"></script>
+<% }) %>
