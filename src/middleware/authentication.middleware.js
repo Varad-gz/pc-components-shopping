@@ -15,7 +15,21 @@ module.exports = {
                 next();
             }
         }else {
+            if(req.originalUrl === '/item') {
+                const prodLink = req.originalUrl + '?id=' + req.body.itemId;
+                req.session.prodLink = prodLink;
+            }
             res.redirect('/login');
+        }
+    },
+
+    forVendor: (req, res, next) => {
+        if(req.session.loggedIn){
+            if(req.session.loggedIn.role === 'vendor') {
+                next();
+            }
+        }else {
+            res.redirect('/vendor/login');
         }
     },
     
@@ -29,15 +43,23 @@ module.exports = {
                     next();
                 } else {
                     req.flash('logout', '/admin/logout');
-                    res.redirect('back');
+                    res.redirect('/admin/dashboard');
                 }
             } else if(req.session.loggedIn.role === 'user') {
                 const url = req.originalUrl;
-                if(url.startsWith('/admin') || url.startsWith('/vendor')){
+                if(url.startsWith('/admin') || url.startsWith('/vendor') ||  url.startsWith('/registration')){
                     req.flash('logout', '/logout');
-                    res.redirect('back');
+                    res.redirect('/');
                 } else {
                     next();
+                }
+            } else if(req.session.loggedIn.role === 'vendor') {
+                const url = req.originalUrl;
+                if(url.startsWith('/vendor/dashboard') || url.startsWith('/vendor/logout') || url.startsWith('/vendor/profile')){
+                    next();
+                } else {
+                    req.flash('logout', '/vendor/logout');
+                    res.redirect('/vendor/dashboard');
                 }
             }
         } else {

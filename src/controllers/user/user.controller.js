@@ -58,7 +58,13 @@ module.exports = {
             } else if(await passwordOperations.comparePassword(req.body.password, user[0].password) === true) {
                 req.session.loggedIn = {userid: user[0].customer_id, username: username, role: 'user'}
                 req.flash('alert', 'Logged in successfully');
-                res.redirect('/');
+                if(req.session.prodLink){
+                    const link = req.session.prodLink;
+                    delete req.session.prodLink;
+                    res.redirect(link);
+                } else {
+                    res.redirect('/');
+                }
             } else {
                 req.flash('alertWithButton', 'Incorrect password');
                 res.redirect('/login');

@@ -5,7 +5,6 @@ module.exports = {
         try {
             const id = req.query.id;
             const data = await getProdDetails(id);
-            console.log(data);
             res.render('content/item', {
                 id : id, 
                 data : data,

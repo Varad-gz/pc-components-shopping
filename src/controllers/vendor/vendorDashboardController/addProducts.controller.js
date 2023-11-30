@@ -6,13 +6,15 @@ module.exports = {
 
     // This will get category list in the add products menu
     getRootPage : async (req, res) => {
+        console.log(req.body.loggedIn)
         try {
             const rootCat = await getRootCategory();
             res.render('content/vendor/vendorDashboardContents/addProducts', {
                 title: 'Add Product',
                 rootCat : rootCat,
                 scripts: ['/scripts/addProductsPublic.js'],
-                loggedIn: req.body.loggedIn
+                loggedIn: req.body.loggedIn,
+                vid: req.session.vendor_id
             });
         } catch (err) {
             console.log(err);
