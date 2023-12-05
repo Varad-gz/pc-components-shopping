@@ -47,7 +47,7 @@ module.exports = {
                 }
             } else if(req.session.loggedIn.role === 'user') {
                 const url = req.originalUrl;
-                if(url.startsWith('/admin') || url.startsWith('/vendor') ||  url.startsWith('/registration')){
+                if(url.startsWith('/admin') || url.startsWith('/vendor') ||  url.startsWith('/registration') ||  url.startsWith('/login')){
                     req.flash('logout', '/logout');
                     res.redirect('/');
                 } else {

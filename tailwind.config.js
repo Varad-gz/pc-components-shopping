@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./public/webpages/*.html",
-            "./src/views/**/*.ejs",],
+            "./src/**/*.{ejs,html,js}",],
   theme: {
     fontFamily: {
       'sans': ['Roboto', 'Segoe UI Symbol'],

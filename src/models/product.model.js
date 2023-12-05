@@ -32,8 +32,19 @@ module.exports = {
     },
 
     getProdDetails: async (id) => {
-        sql_query = `select p.product_id, p.product_name, p.unit_price, p.total_stock, p.product_description, p.category_id, p.product_image, v.organization_name from products p join vendor_table v on p.vendor_id = v.vendor_id where p.product_id = ?;`;
-        sql_values = id;
+        const sql_query = `select p.product_id, p.product_name, p.unit_price, p.total_stock, p.product_description, p.category_id, p.product_image, v.organization_name from products p join vendor_table v on p.vendor_id = v.vendor_id where p.product_id = ?;`;
+        const sql_values = [id];
+        try {
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    getSearchedProds: async (name) => {
+        name = '%' + name + '%';
+        const sql_query = `select * from products where product_name like ?`;
+        const sql_values = [name];
         try {
             return await pquery(sql_query, sql_values);
         } catch (err) {

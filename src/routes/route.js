@@ -11,7 +11,7 @@ const apiProxy = require('./api.proxy');
 const forAdminApiProxies = require('./proxies/admin.proxies');
 const forVendorApiProxies = require('./proxies/vendor.proxies');
 
-router.use('/', homeRoute);
+router.use(homeRoute);
 router.use(userRoute);
 router.use('/browse', browseRoute);
 router.use('/item', itemRoute);

@@ -21,7 +21,8 @@
     
 
     <% if (typeof search != 'undefined') { %>
-        <h1 class="text-white m-[10px] text-[20px]"><%= search.resultCount%> Found</h1>
+        <input type="hidden" value="<%- text %>" id="searchQ">
+        <h1 class="m-[10px] text-[20px]" id="search"><%= search%> Products Found</h1>
     <% } %>
 
 
@@ -37,7 +38,7 @@
                             </div>
                         </div>
                         <div class="w-[270px] pl-[10px] pt-[5px] h-[170px] flex flex-col">
-                            <div class="w-full line-clamp-2 text-[20px]"><%= element.product_name%></div>
+                            <div class="w-full line-clamp-2 text-[20px]" id="prodName"><%= element.product_name%></div>
                             <div class="w-full mt-[10px] pt-[10px] text-[20px] border-t-[1px] border-gray-200">&#8377; <%= element.unit_price%></div>
                             <div class="w-full text-[15px]">
                                 <% if (element.total_stock > 5) { %>

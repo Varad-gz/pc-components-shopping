@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "app": "nodemon app.js",
-    "build:css": "postcss ./src/styles/tailwindcss.css -o ./public/stylesheet/main.css",
+    "build:css": "postcss ./src/styles/tailwindcss.css -o ./public/stylesheet/main.css --watch",
     "build:css-watch": "npx tailwindcss -i ./src/styles/tailwindcss.css -o ./public/stylesheet/main.css --watch"
   },
   "author": "Varad Pandit",
