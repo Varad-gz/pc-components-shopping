@@ -75,5 +75,48 @@ module.exports = {
         }
     },
 
+    getVendorDetailsforApproval: async () => {
+        const sql_query = `select vendor_id, organization_name, email_id, phone1, phone2, address_line1, address_line2, city, state, zip from vendor_table as v join personal_info as p on v.personal_info_id = p.personal_info_id where v.is_approved = 0`;
+        try{
+            return await pquery(sql_query);
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    getPersonalRefId: async (id) => {
+        const sql_query = `SELECT personal_info_id FROM vendor_table WHERE vendor_id = ?;`;
+        const sql_values = [id];
+        try{
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    deleteVendor: async (pid, vid) => {
+        const sql_query = `call deleteVendor(?, ?)`;
+        const sql_values = [vid, pid];
+        try{
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    approveVendor: async (id) => {
+        const sql_query = `UPDATE vendor_table SET is_approved = 1 WHERE vendor_id = ?;`;
+        const sql_values = [id];
+        try{
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }
+    },
+
     Vendor: Vendor
 }
+
+/**UPDATE vendor_table
+SET is_approved = 1
+WHERE vendor_id = your_vendor_id;*/

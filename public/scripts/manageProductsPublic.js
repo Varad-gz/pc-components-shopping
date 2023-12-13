@@ -8,27 +8,43 @@ function getThisSub(x, id) { //id is depth, x is category_id
     if(x === 'new') {
         addThisCategory(getParentCat(id), id)
     }
-    const api = `${API}/catman?category_id=${x}`;
-    fetch(api, {
-        method : 'GET',
-        credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(data => {
-        let newSpan = document.createElement('span');
-        if(data.id === 'subcategories') {
-            newSpan.setAttribute('id', `thisis${data.depth}`);
-            newSpan.innerHTML = data.htmlBody;
-            document.getElementById(data.id).appendChild(newSpan);
-        } else if(data.id === 'cat') {
-            if(id < 6) {
-                newSpan.setAttribute('id', 'addproduct');
-                newSpan.innerHTML = createAddSpan(x, parseInt(id));
-                document.getElementById(data.id).appendChild(newSpan);
+    if(x != '') {
+        const api = `${API}/catman?category_id=${x}`;
+        fetch(api, {
+            method : 'GET',
+            credentials: 'include'
+        })
+        .then(res => {
+            if(res.ok){
+                return res.json();
+            } else if(res.status === 403) {
+                throw new Error('Forbidden');
+            } else {
+                throw new Error('Request failed');
             }
-        }
-    })
-    .catch(err => {throw err});
+        })
+        .then(data => {
+            let newSpan = document.createElement('span');
+            if(data.id === 'subcategories') {
+                newSpan.setAttribute('id', `thisis${data.depth}`);
+                newSpan.innerHTML = data.htmlBody;
+                document.getElementById(data.id).appendChild(newSpan);
+            } else if(data.id === 'cat') {
+                if(id < 6) {
+                    newSpan.setAttribute('id', 'addproduct');
+                    newSpan.innerHTML = createAddSpan(x, parseInt(id));
+                    document.getElementById(data.id).appendChild(newSpan);
+                }
+            }
+        })
+        .catch(err => {
+            if(err.message === 'Forbidden') {
+                window.location.href = '/forbidden-page';
+            } else {
+                throw err;
+            }
+        });
+    }
 }
 
 
@@ -88,7 +104,15 @@ function editThisCategory(category_id) {
         method : 'GET',
         credentials: "include"
     })
-    .then(res => res.text())
+    .then(res => {
+        if(res.ok){
+            return res.text();
+        } else if(res.status === 403) {
+            throw new Error('Forbidden');
+        } else {
+            throw new Error('Request failed');
+        }
+    })
     .then(data => {
         let newSpan = document.createElement('span');
         newSpan.setAttribute('style', "position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; display: flex; justify-content: center; height: 100vh;")
@@ -96,7 +120,13 @@ function editThisCategory(category_id) {
         newSpan.innerHTML = data;
         document.body.appendChild(newSpan);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        if(err.message === 'Forbidden') {
+            window.location.href = '/forbidden-page';
+        } else {
+            throw err;
+        }
+    });
 }
 
 function addThisCategory(parentCatId) {
@@ -105,7 +135,15 @@ function addThisCategory(parentCatId) {
         method : 'GET',
         credentials: "include"
     })
-    .then(res => res.text())
+    .then(res => {
+        if(res.ok){
+            return res.text();
+        } else if(res.status === 403) {
+            throw new Error('Forbidden');
+        } else {
+            throw new Error('Request failed');
+        }
+    })
     .then(data => {
         let newSpan = document.createElement('span');
         newSpan.setAttribute('style', "position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; display: flex; justify-content: center; height: 100vh;")
@@ -113,7 +151,13 @@ function addThisCategory(parentCatId) {
         newSpan.innerHTML = data;
         document.body.appendChild(newSpan);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        if(err.message === 'Forbidden') {
+            window.location.href = '/forbidden-page';
+        } else {
+            throw err;
+        }
+    });
 }
 
 function getParentCat(depth) {
@@ -126,7 +170,7 @@ function getParentCat(depth) {
 
 function createAddSpan(id, depth){
     return `
-        <div class="border-t-[1px] border-gray-300 mt-[10px] pt-[10px]">
+        <div class="border-t-[1px] border-[#2d2a2a] mt-[10px] pt-[10px]">
             <form action="/api/proxy/catman/add" method="post">
                 <div class="flex justify-center text-[20px]">Add Category</div>
                 <div class="flex justify-center flex-col">
@@ -135,24 +179,18 @@ function createAddSpan(id, depth){
                     <div class="w-full flex flex-row mt-[20px]">
                         <div class="w-full">
                             <label for="catname">Category Name</label>
-                            <div class="bordergradient h-[45px] my-[5px]">
-                                <input type="text" id="catname" name="catName" placeholder="Enter the Category Name..." class="formfield h-[40px]" required>
-                            </div>
+                            <input type="text" id="catname" name="catName" placeholder="Enter the Category Name..." class="w-full h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac] mt-[10px]" required>
                         </div>
                         <div class="w-full ml-[20px]">
                             <label for="altname">Alternative Name</label>
-                            <div class="bordergradient h-[45px] my-[5px]">
-                                <input type="text" id="altname" name="altName" placeholder="Enter the Alternative Category Name..." class="formfield h-[40px]" required>
-                            </div>
+                            <input type="text" id="altname" name="altName" placeholder="Enter the Alternative Category Name..." class="w-full h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac] mt-[10px]" required>
                         </div>
                     </div>
                     <label for="catdesc" class="mt-[10px]">Product Description</label>
-                    <div class="bordergradient w-full h-[105px] my-[5px]">
-                        <textarea id="catdesc" name="catDesc" placeholder="Enter the Category Description..." class="formfield h-[100px] resize-none" required></textarea>
-                    </div>
+                    <textarea id="catdesc" name="catDesc" placeholder="Enter the Category Description..." class="h-[200px] resize-none w-full my-[10px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none p-[10px] placeholder:text-[#aeacac] mt-[10px]" required></textarea>
                     <div class="flex w-full h-[45px] my-[10px]">
-                        <button id="btnstyle1" type="reset" class="style1button w-full h-[40px] mr-[20px]">Clear</button>
-                        <button id="btnstyle1" type="submit" class="style1button w-full h-[40px]">Submit</button>
+                        <button id="btnstyle1" type="reset" class="bg-red-700 hover:bg-red-800 w-full h-[40px] mr-[20px]">Clear</button>
+                        <button id="btnstyle1" type="submit" class="bg-red-700 hover:bg-red-800 w-full h-[40px]">Submit</button>
                     </div> 
                 </div>
             </form>

@@ -1,20 +1,21 @@
-<main class="w-auto mx-4 flex justify-center flex-col items-center" >
-    <form action="/search" method="post">
-        <div class="w-full flex flex-row my-[20px] items-center justify-center">
-            <div class="bordergradient w-[500px] h-[50px]">
-                <input type="text" class="formfield rounded-lg h-[50px]" placeholder="Search for a product..." name="prodQuery">
-            </div>
-            <button type="submit" class="style1button w-auto h-[30px] p-[20px] ml-[10px]">Submit</button>
+<main class="w-full p-[10px] text-white">
+    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
+        <div class="w-full flex flex-row justify-center items-center">
+            <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
+            <span class="text-[25px] ml-[10px] cursor-default">PC Components Shopping</span>
         </div>
-    </form>
-    <div class="w-[1000px] mx-[20px] px-[5px] bordergradient shadow-lg shadow-black overflow-hidden">
-        <div class="w-full bg-white p-[30px]">
+        <div class="w-[50%] h-[3px] bg-gradient-to-r from-red-800 via-red-600 to-red-800 mt-[10px]"></div>
+        <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center mt-[20px]">
+                <div class="w-[50%] flex flex-row shadow-lg shadow-black overflow-hidden relative rounded-full bg-[#363636]">
+                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#363636]" placeholder="Search for a product..." name="prodQuery" required>
+                    <!--<div class="w-[50px] h-[50px] right-[18px] rotate-45 bg-red-700 absolute z-0"></div>-->
+                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 rounded-full">Search</button>
+                </div>
+        </form>
+        <div class="w-[50%] h-[1px] bg-[#2d2a2a] mt-[30px]"></div>
+        <div class="mt-[10px] w-[50%] flex flex-col items-center">
             <div class="text-[20px]">About us</div>
-            <div class="flex flex-col">
-                <div>Being India's first dedicated online store for computer components we have earned the loyalty and support of tech-enthusiasts and novice e-shoppers alike. Founded in 2000, the company started off as the brainchild of a group PC enthusiasts, who wanted computer components to be more readily available and at lower prices. Theitdepot grew quickly from its humble beginnings to become the site for overclockers and PC enthusiasts.Our website provides detailed specs, how-to's, customer reviews, and high resolution photo galleries.</div>
-                <div>The itdepot has since moved into retail and operates a retail showroom to complement the online store for fast delivery and direct product tech support. We follow through on our commitment to exceptional customer service. Our tech support and service team members are available via phone, e-mail and online chat to ensure your utmost satisfaction.</div>
-                <div>Whether you are a novice or a tech guru, you are sure to enjoy shopping at theitdepot.com. We work passionately to exceed your expectations every time.</div>
-            </div>
+            <div class="text-center text-[15px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos exercitationem excepturi inventore, officiis quo, ipsum, placeat praesentium vitae nesciunt tempore officia ipsa quod repellendus voluptatibus architecto quas? Possimus, quis perferendis quisquam eligendi illo labore iusto eius voluptate. Doloremque natus quae maxime velit facilis similique nemo, vitae placeat esse? Dolorum quos eos delectus vitae. Laudantium iste sit, ratione quisquam, officia nemo, voluptatum natus quis dicta doloribus nobis amet ut error veniam consectetur fugiat nesciunt eos cum excepturi. Perspiciatis voluptate corporis qui eligendi, sed eveniet repellat distinctio consequuntur numquam quae impedit itaque consectetur rerum incidunt sequi nihil deleniti accusamus maxime enim. Explicabo.</div>
         </div>
     </div>
 </main>

@@ -1,63 +1,51 @@
-<main class="w-auto mx-4">
-
-    <!--<% if (typeof cat != 'undefined') { %>
-        <div class="w-full flex justify-center">
-            <div class="w-[500px] bg-white px-[10px] flex flex-row items-center rounded-lg shadow-lg shadow-black">
-                <div class="w-[200px]">Search by Category</div>
-                <form action="/browse" method="post" class="w-full pl-[10px] flex flex-row items-center">
-                    <div class="bordergradient w-full h-[50px] my-[10px] overflow-hidden">
-                        <select name="category" class="formfield w-full h-[43px]" required>
-                            <option value="">Select a Category</option>
-                            <% cat.forEach(element => { %>
-                                <option value="<%- element.category_id %>;;<%- element.category_name %>"><%- element.alt_name %></option>
-                            <% }) %>
-                        </select>
-                    </div>
-                    <button class="w-fit style1button h-[40px] px-[15px] ml-[10px]">Search</button>
-                </form>
-            </div>
-        </div>
-    <% } %>-->
-    
-
-    <% if (typeof search != 'undefined') { %>
-        <input type="hidden" value="<%- text %>" id="searchQ">
-        <h1 class="m-[10px] text-[20px]" id="search"><%= search%> Products Found</h1>
-    <% } %>
-
-
-    <!--LIST OF browse-->
-    <div class="flex flex-row my-[30px] justify-center flex-wrap">
-        <% products.forEach(element => { %>
-            <a href="/item?id=<%= element.product_id%>">
-                <div class="bordergradient shadow-lg w-[420px] h-[180px] overflow-hidden mr-[20px] mb-[20px]">
-                    <div class="bg-white w-full h-[170px] flex flex-row">
-                        <div class="w-[140px] h-[170px] flex justify-center items-center border-r-[1px] border-gray-200">
-                            <div class="w-[120px] h-[120px]">
-                                <img src="<%= element.product_image%>">
-                            </div>
-                        </div>
-                        <div class="w-[270px] pl-[10px] pt-[5px] h-[170px] flex flex-col">
-                            <div class="w-full line-clamp-2 text-[20px]" id="prodName"><%= element.product_name%></div>
-                            <div class="w-full mt-[10px] pt-[10px] text-[20px] border-t-[1px] border-gray-200">&#8377; <%= element.unit_price%></div>
-                            <div class="w-full text-[15px]">
-                                <% if (element.total_stock > 5) { %>
-                                    <span class="text-green-700">Instock</span>
-                                <% } else if (element.total_stock > 0) { %>
-                                    <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
-                                <% } else { %>
-                                <span class="text-red-600">Out of Stock</span>
-                                <% } %>
-                            </div>
-                            <div class="w-full text-[15px] text-gray-600">Sold by <%= element.organization_name%></div>
-                        </div>
-                    </div>
+<main class="w-full p-[10px] text-white">
+    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex flex-col">
+        <div class="w-full border-b-[1px] border-[#2d2a2a] pb-[20px]">
+            <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center">
+                <div class="w-[50%] flex flex-row shadow-lg shadow-black overflow-hidden relative rounded-full bg-[#363636]">
+                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#363636]" placeholder="Search for a product..." name="prodQuery" required>
+                    <!--<div class="w-[50px] h-[50px] right-[18px] rotate-45 bg-red-700 absolute z-0"></div>-->
+                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 rounded-full">Search</button>
                 </div>
-            </a>
-        <% }) %>
+            </form>
+        </div>
+
+        <div class=" w-full flex flex-row mt-[10px]">
+            <aside class="w-[20%] h-fit bg-[#262525] shadow-md shadow-black py-[20px]">
+                <div class="w-full text-center text-[20px]">Search by Category</div>
+                <div class="flex flex-col items-center border-t-[1px] border-[#4e4949] mt-[10px] pt-[10px]">
+                    <% cats.forEach(element => { %>
+                        <a href="/api/proxy/getitems?category=<%- element.category_name %>" class="w-[90%] p-[5px] my-[10px] shadow-md bg-[#363636] shadow-black hover:bg-[#403f3f] text-center"><span class="truncate text-[16px] text-center"><%- element.alt_name %></span></a>
+                    <% }) %>
+                </div>
+            </aside>
+            <section class="w-[80%] pb-[20px] ml-[10px] border-l-[1px] border-[#2d2a2a] px-[10px]">
+                <h1 class="ml-[10px] mt-[10px]"><%- products.length %> product(s) found</h1>
+                <% products.forEach(element => { %>
+                    <div class="w-full h-[150px] bg-[#312f2f] hover:bg-[#363535] mt-[20px]">
+                        <a href="/item?id=<%- element.product_id%>" class="w-full flex flex-row h-full">
+                            <div class="h-full p-[5px] pr-[10px]">
+                                <img src="<%- element.product_image %>" alt="" class="h-full">
+                            </div>
+                            <div class="w-full mr-[10px] p-[10px]">
+                                <div class="text-[20px] line-clamp-2 border-b-[1px] border-[#4a4646] pb-[5px]"><%- element.product_name %></div>
+                                <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
+                                <div class="w-full text-[15px]">
+                                    <% if (element.total_stock > 5) { %>
+                                        <span class="text-green-700">Instock</span>
+                                    <% } else if (element.total_stock > 0) { %>
+                                        <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
+                                    <% } else { %>
+                                    <span class="text-red-600">Out of Stock</span>
+                                    <% } %>
+                                </div>
+                                <div class="w-full text-[15px] text-gray-300">Sold by <%= element.organization_name%></div>
+                            </div>
+                        </a>
+                    </div>
+                <% }) %>
+            </section>    
+        </div>
+
     </div>
-
-    <!--LIST OF browse END-->
-
-
 </main>

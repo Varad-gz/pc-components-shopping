@@ -20,7 +20,8 @@ module.exports = {
     getCartPage: (req, res) => {
         res.render('content/user/Cart', {
             title: 'My Cart',
-            loggedIn: req.body.loggedIn
+            loggedIn: req.body.loggedIn,
+            scripts: ['/scripts/cart.public.js']
         });
     },
 

@@ -1,20 +1,14 @@
-<main class="w-full flex justify-center">
-    <div class="w-[500px] mx-[20px] px-[5px] bordergradient shadow-lg shadow-black overflow-hidden">
-        <div class="w-full bg-white p-[30px]">
-            <div class="text-[20px]">Log in</div>
-            <form method="post" class="w-full" id="form">
-                <div class="bordergradient w-full h-[43px] overflow-hidden my-[20px]">
-                    <input type="email" id="email" placeholder="Email-ID" name="email" class="formfield h-[40px]" required>
-                </div>
-                <div class="bordergradient w-full h-[43px] overflow-hidden">
-                    <input type="password" id="password" placeholder="Password" name="password" class="formfield  h-[40px]" required>
-                </div>
-                <div class="flex w-full mt-[20px] justify-center">
-                    <button type="reset" class="style1button w-full h-[35px] mr-[20px]">Clear</button>
-                    <button type="submit" class="style1button w-full h-[35px]">Login</button>
-                </div>
-            </form>
-            <div class="mt-[20px]"><h3 class="w-fit cursor-pointer text-gray-500 hover:border-b-[1px] hover:border-gray-500"><a href="/registration">Haven't registered yet? Go to registration page</a></h3></div>
-        </div>
+<main class="w-full flex justify-center mt-[20px]">
+    <div class="bg-[#1F1E1E] p-[20px] w-[500px] flex flex-col items-center text-white shadow-lg shadow-black">
+        <div class="text-[20px]">Log in</div>
+        <form method="post" class="w-full" id="form">
+            <input type="email" id="email" placeholder="Email-ID" name="email" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <input type="password" id="password" placeholder="Password" name="password" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <div class="flex w-full mt-[20px] justify-center">
+                <button type="reset" class="bg-red-700 hover:bg-red-800 w-full h-[35px] mr-[20px]">Clear</button>
+                <button type="submit" class="bg-red-700 hover:bg-red-800 w-full h-[35px]">Login</button>
+            </div>
+        </form>
+        <div class="mt-[20px]"><h3 class="w-fit cursor-pointer text-gray-500 hover:border-b-[1px] hover:border-gray-400 hover:text-gray-400"><a href="/registration">Haven't registered yet? Go to registration page</a></h3></div>
     </div>
 </main>

@@ -1,27 +1,17 @@
-<main class="w-full flex justify-center">
-    <div class="w-[1000px] mx-[20px] px-[5px] bordergradient shadow-lg shadow-black overflow-hidden">
-        <div class="w-full bg-white p-[30px]">
-            <div class="text-[20px]">Vendor Registration</div>
-            <div class="my-[15px]"><h3 class="w-fit cursor-pointer text-gray-500 hover:border-b-[1px] hover:border-gray-500"><a href="/vendor/login">Already a registered vendor? Go to vendor login</a></h3></div>
-            <form action="#" method="post" class="w-full" id="form">
-                <div class="bordergradient w-full h-[43px] overflow-hidden my-[20px]">
-                    <input type="text" id="orgName" placeholder="Organization Name" name="orgName" class="formfield h-[40px]" required>
+<main class="w-full flex justify-center my-[20px]">
+    <div class="bg-[#1F1E1E] p-[20px] w-[1000px] flex flex-col items-center text-white shadow-lg shadow-black">
+        <div class="text-[20px]">Vendor Registration</div>
+        <div class="my-[15px] w-full text-left"><h3 class="w-fit cursor-pointer text-gray-500 hover:border-b-[1px] hover:border-gray-400 hover:text-gray-400"><a href="/vendor/login">Already a registered vendor? Go to vendor login</a></h3></div>
+        <form action="#" method="post" class="w-full" id="form">
+            <input type="text" id="orgName" placeholder="Organization Name" name="orgName" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <input type="email" id="email" placeholder="Email-ID" name="email" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <div class="w-full flex flex-row my-[10px]">
+                <input type="password" id="password" placeholder="Password" name="password" class="w-full h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" oninput="passwordRetype()" required>
+                <div class="ml-[10px] w-full" id="retype">
+                    <input type="password" id="rpassword" placeholder="Retype Password" class="w-full h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" oninput="passwordRetype()" required>
                 </div>
-                <div class="bordergradient w-full h-[43px] overflow-hidden my-[20px]">
-                    <input type="email" id="email" placeholder="Email-ID" name="email" class="formfield h-[40px]" required>
-                </div>
-                <div class="w-full flex flex-row my-[20px]">
-                    <div class="bordergradient w-full h-[43px] overflow-hidden">
-                        <input type="password" id="password" placeholder="Password" name="password" class="formfield h-[40px]" oninput="passwordRetype()" required>
-                    </div>
-                    <div class="ml-[10px] w-full" id="retype">
-                        <div class="bordergradient h-[43px] overflow-hidden">
-                            <input type="password" id="rpassword" placeholder="Retype Password" class="formfield h-[40px]" oninput="passwordRetype()" required>
-                        </div>
-                    </div>
-                </div>
-                <div id="nextpart"></div>
-            </form>
-        </div>
+            </div>
+            <div id="nextpart"></div>
+        </form>
     </div>
 </main>

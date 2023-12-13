@@ -9,7 +9,8 @@ module.exports = {
                 id : id, 
                 data : data,
                 title: data[0].product_name,
-                loggedIn: req.body.loggedIn
+                loggedIn: req.body.loggedIn,
+                scripts: ['/scripts/item.public.js']
             });
         } catch(err) {
             console.log(err);

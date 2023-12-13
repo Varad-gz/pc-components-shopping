@@ -1,0 +1,49 @@
+<main class="w-full p-[10px] pt-0 text-white">
+    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
+        <div class="text-[20px]">Approve Vendors</div>     
+        <% if (vendorInfo.length === 0) { %>
+            <div class="mt-[20px]">There are no vendors remaining in the approval process</div>
+        <% } else { %>
+            <% vendorInfo.forEach(element => { %>
+                <div class="w-full h-fit bg-[#312f2f] flex flex-col p-[10px] mt-[20px]">
+                    <div class="w-full flex flex-row">
+                        <div class="w-[30%] border-r-[2px] border-[#625e5e] text-center">
+                            <div class="text-[20px] border-b-[2px] border-[#625e5e] pb-[10px] mb-[10px]">Organization Information</div>
+                            <div class="text-[17px]"><%- element.organization_name %></div>
+                            <div class="text-[17px] mt-[20px] text-gray-400"><%- element.email_id %></div>
+                        </div>
+                        <div class="w-full">
+                            <div class="text-[20px] border-b-[2px] border-[#625e5e] pb-[10px] mb-[10px] w-full text-center">Personal Information</div>
+                            <div class="w-full px-[10px]">
+                                <div class="w-full flex flex-row mb-[10px] pb-[10px] border-b-[2px] border-[#625e5e]">
+                                    <div class="w-full flex justify-center flex-row border-r-[2px] border-[#625e5e]">Phone 1 : <%- element.phone1 %></div>
+                                    <div class="text-[17px] w-full flex justify-center items-center">Phone 2 : <%- element.phone2 %></div>
+                                </div>
+                                <div class="w-full flex flex-row mb-[10px] pb-[10px] border-b-[2px] border-[#625e5e]">
+                                    <div class="text-[17px] w-full flex justify-center items-center border-r-[2px] border-[#625e5e]">City : <%- element.city %></div>
+                                    <div class="text-[17px] w-full flex justify-center items-center border-r-[2px] border-[#625e5e]">State : <%- element.state %></div>
+                                    <div class="text-[17px] w-full flex justify-center items-center">Zip : <%- element.zip %></div>
+                                </div>
+                                <div class="w-full mb-[10px] pb-[10px] border-b-[2px] border-[#625e5e]">
+                                    <div>Address Line 1:</div>
+                                    <textarea readonly class="h-[100px] resize-none w-full bg-[#424040] outline-none p-[5px] cursor-default text-[15px]"><%- element.address_line1 %></textarea>
+                                </div>
+                                <div class="w-full">
+                                    <div>Address Line 2:</div>
+                                    <textarea readonly class="h-[100px] resize-none w-full bg-[#424040] outline-none p-[10px] cursor-default"><%- element.address_line2 %></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-[200px] pl-[10px] flex justify-center items-center flex-col border-l-[2px] border-[#625e5e]">
+                            <form action="/api/proxy/vendapp" method="post" class="w-full">
+                                <input type="hidden" name="id" value="<%- element.vendor_id %>">
+                                <button type="submit" value="1" name="submit" class="bg-red-700 hover:bg-red-800 w-full h-[40px] px-[20px] py-[10px] flex items-center">Approve</button>
+                                <button type="submit" value="2" name="submit" class="bg-red-700 hover:bg-red-800 w-full h-[40px] px-[20px] py-[10px] flex items-center mt-[20px]">Reject</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</main>

@@ -1,7 +1,7 @@
 
 <% if (header === 'default') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px] mb-[20px]">
+        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center " id="navbar-logo">
                 <a href="/" class="flex flex-row items-center">
                     <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
@@ -32,7 +32,7 @@
 
 <% if (header === 'user') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px] mb-[20px]">
+        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center ">
                 <a href="/" class="flex flex-row items-center">
                     <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
@@ -62,7 +62,7 @@
 
 <% if (header === 'vendor') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px] mb-[20px]">
+        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center ">
                 <a href="/" class="flex flex-row items-center">
                     <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
@@ -89,7 +89,7 @@
 
 <% if (header === 'admin') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px] mb-[20px]">
+        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center ">
                 <a href="/" class="flex flex-row items-center">
                     <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
@@ -108,6 +108,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </nav>
+<% } %>
+
+<% if (header === 'forbidden') { %>
+    <nav class="w-full">
+        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
+            <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center " id="navbar-logo">
+                <a href="/" class="flex flex-row items-center">
+                    <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
+                    <span class="text-[20px] ml-[10px]" id="navbar-logo-text">PC Components Shopping</span>
+                </a>
             </div>
         </div>
     </nav>

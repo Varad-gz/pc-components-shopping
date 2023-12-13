@@ -39,7 +39,7 @@ module.exports = {
             req.body.loggedIn = loggedIn;
             if(req.session.loggedIn.role === 'admin') {
                 const url = req.originalUrl;
-                if(url.startsWith('/admin/dashboard') || url.startsWith('/admin/logout') || url.startsWith('/api/proxy')){
+                if(url.startsWith('/admin/dashboard') || url.startsWith('/admin/logout')){
                     next();
                 } else {
                     req.flash('logout', '/admin/logout');

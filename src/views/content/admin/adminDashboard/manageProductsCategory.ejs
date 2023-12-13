@@ -1,20 +1,18 @@
-<main class="w-full flex justify-center">
-    <div class="w-[800px] bordergradient shadow-lg shadow-black">
-        <div class="w-[790px] m-[5px] rounded-sm bg-white p-[30px] flex justify-end items-center flex-col">
+<main class="w-full p-[10px] pt-0 text-white">
+    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
+        <div class="w-[70%] flex justify-end items-center flex-col">
             <div class="text-[20px]">Manage Categories</div>
             <div class="w-full" id="cat">
                 <div class="w-full flex flex-row my-[20px]" id="thisis0">
-                    <div class="bordergradient w-full h-[50px]">
-                        <select id="0" name="catfor0" onchange="getThisSub(this.value, this.id)" class="formfield h-[45px]">
-                            <option value="">Select the Category</option>
-                            <option value="new" class="bg-red-500 text-white">Add a New Category</option>
-                            <% rootCat.forEach(element => { %>
-                                <option value="<%= element.category_id%>"><%= element.alt_name%></option>
-                            <% }) %>
-                        </select>
-                    </div>
-                    <button onclick="editThisCategory(this.value)" type="button" id="0change" class="style1button w-auto h-[30px] p-[20px] ml-[10px]">Edit</button>
-                    <button type="button" class="style1button w-auto h-[30px] p-[20px] ml-[10px]"><a id="0delete">Delete</a></button>
+                    <select id="0" name="catfor0" onchange="getThisSub(this.value, this.id)" class="w-full h-fit bg-[#312f2f] focus:bg-[#424040] outline-none p-[10px] text-[#aeacac] shadow-md shadow-black">
+                        <option value="">Select the Category</option>
+                        <option value="new" class="bg-red-700 hover:bg-red-800 text-white">Add a New Category</option>
+                        <% rootCat.forEach(element => { %>
+                            <option value="<%= element.category_id%>"><%= element.alt_name%></option>
+                        <% }) %>
+                    </select>
+                    <button onclick="editThisCategory(this.value)" type="button" id="0change" class="bg-red-700 hover:bg-red-800 w-fit py-[10px] px-[20px] h-[40px] ml-[10px] flex items-center">Edit</button>
+                    <button type="button" class="bg-red-700 hover:bg-red-800 w-fit h-[40px] py-[10px] px-[20px] ml-[10px] flex items-center"><a id="0delete">Delete</a></button>
                 </div>
                 <span id="subcategories"></span>
             </div>

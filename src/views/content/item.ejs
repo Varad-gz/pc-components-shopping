@@ -1,31 +1,36 @@
-<main class="w-auto mx-4 flex flex-col">
+<main class="w-full p-[20px] flex flex-col">
     <% data.forEach(element => { %>
-        <div class="flex flex-row">
-            <div class="w-[300px]"><img src="<%= element.product_image%>" class="shadow-md shadow-black rounded-lg w-[300px] h-[240px]">
-                <div>
+        <div class="flex flex-row h-[350px]">
+            <div class="w-[300px]">
+                <img src="<%= element.product_image%>" class="shadow-md shadow-black rounded-lg w-[300px] h-[240px]">
+                <div class="text-white">
                     <form action="/item" method="post">
                         <input type="hidden" name="itemId" value="<%- id %>">
-                        <button type="submit" class="style1button w-full mt-[20px] h-[40px] mr-[20px]">Add to Card</button>
+                        <div class="flex flex-row items-center shadow-sm shadow-black w-full mt-[20px]">
+                            <input type="text" class="w-full py-[10px] h-[40px] bg-[#1F1E1E] outline-none text-center" value="1" readonly id="quantity">
+                            <button type="button" class="bg-red-700 hover:bg-red-800 w-fit h-[40px] px-[20px] py-[10px] flex items-center border-[1px] border-red-900" id="quantminus">-</button>
+                            <button type="button" class="bg-red-700 hover:bg-red-800 w-fit h-[40px] px-[20px] py-[10px] flex items-center border-[1px] border-red-900" id="quantadd">+</button>
+                        </div>
+                        <button type="submit" class="mt-[10px] bg-red-700 hover:bg-red-800 w-full h-[40px] px-[20px] py-[10px] flex items-center justify-center shadow-sm shadow-black">Add to Card</button>
                     </form>
                 </div>
             </div>
-            <div class="w-full h-[300px] ml-[20px] pl-[10px] bordergradient shadow-lg shadow-black overflow-hidden">
-                <div class="w-full h-full bg-white p-[30px]">
-                    <div class="text-[20px] w-full"><%= element.product_name %></div>
-                    <div class="text-gray-500 text-[20px] my-[20px]">Price : &#8377; <%= element.unit_price %></div>
-                    <% if(element.total_stock > 3) {%>
-                        <div class="text-green-500">In stock</div>
-                    <%} else {%>
-                        <div class="text-red-500">Stock left : <%= element.total_stock %></div>
-                    <%}%>
-                    <div class="text-gray-400 text-[15px]">Sold by <%= element.organization_name %></div>
-                </div>
+            <div class="w-full h-full bg-[#1F1E1E] shadow-md shadow-black p-[30px] ml-[20px]">
+                <div class="text-[20px] w-full text-white"><%= element.product_name %></div>
+                <div class="text-gray-500 text-[20px] my-[20px]">Price : &#8377; <%= element.unit_price %></div>
+                <input type="hidden" name="stock" id="stock" value="<%= element.total_stock %>">
+                <% if(element.total_stock > 3) {%>
+                    <div class="text-green-500">In stock</div>
+                <%} else {%>
+                    <div class="text-red-500">Stock left : <%= element.total_stock %></div>
+                <%}%>
+                <div class="text-gray-400 text-[15px]">Sold by <%= element.organization_name %></div>
             </div>
         </div>
-        <div class="w-full px-[5px] mt-[20px] bordergradient shadow-lg shadow-black overflow-hidden">
-            <div class="w-full bg-white p-[30px]">
-                <div class=" mb-[10px] w-[270px]"><h1 class="text-[20px]">Product Description</h1></div>
-                <p class="text-[16px] text-gray-500"><%= element.product_description%></p>
+        <div class="w-full text-white mt-[20px]">
+            <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex flex-col">
+                <div class="mb-[10px] pb-[10px] border-b-[1px] border-[#2d2a2a]"><h1 class="text-[20px]">Product Description</h1></div>
+                <p class="text-[16px]"><%= element.product_description%></p>
             </div>
         </div>
     <% }) %>

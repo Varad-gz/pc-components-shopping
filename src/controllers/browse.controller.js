@@ -1,5 +1,5 @@
 const {getAll, getByCatname, getSearchedProds} = require('../models/product.model');
-const {getRootCategory, getCategoriesWithRef} = require('../models/category.model');
+const {getRootCategory, getCategoriesWithRef, getAllCategories} = require('../models/category.model');
 
 module.exports = {
 
@@ -7,11 +7,13 @@ getRootProductsPage : async(req, res) => {
     try {
         const cats = await getRootCategory();
         const items = await getAll();
+        
+        console.log(items);
 
         res.render('content/browse', {
             title: 'Browse', 
-            cat : cats, 
             products : items,
+            cats: cats,
             loggedIn: req.body.loggedIn,
         });
 

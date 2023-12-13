@@ -41,6 +41,15 @@ Category.prototype.update = async function() {
 }
 
 module.exports = {
+    getAllCategories : () => {
+        return new Promise((resolve, reject) => {
+            sql_db.query("select category_id, category_name, alt_name, category_depth from new_category", (err, result) => {
+                if(err) reject(err)
+                resolve(result);
+            });
+        });
+    },
+
     getRootCategory : () => {
         return new Promise((resolve, reject) => {
             sql_db.query("select category_id, category_name, alt_name from new_category where category_depth = 0;", (err, result) => {

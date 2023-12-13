@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const ejsLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const {ifAuthenticated} = require('./src/middleware/authentication.middleware');
 
 const flash = require('express-flash');
 const {flashThis} = require('./src/middleware/flashMessage');
@@ -17,7 +16,7 @@ const cors = require('cors');
 app.use(cors({credentials: true, origin: `http://localhost:${process.env.PORT}`}))
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, 'public/styles')));
+app.use('/css', express.static(path.join(__dirname, 'public/stylesheet')));
 app.use('/scripts', express.static(path.join(__dirname, 'public/scripts')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
@@ -39,7 +38,9 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 
-app.use(ifAuthenticated);
+app.get('/temp', (req, res) => {
+    console.log(req.body);
+})
 
 app.use(routes);
 

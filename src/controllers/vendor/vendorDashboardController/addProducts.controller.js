@@ -25,6 +25,7 @@ module.exports = {
         try {
             const catId = req.query.id;
             const cat = await getCategoriesWithRef(catId);
+            console.log(cat);
             res.send(cat);
         } catch (err) {
             console.log(err);
