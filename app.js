@@ -39,7 +39,10 @@ app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 
 app.get('/temp', (req, res) => {
-    console.log(req.body);
+    res.render('temp', {
+        title: 'temp',
+        loggedIn: []
+    });
 })
 
 app.use(routes);
