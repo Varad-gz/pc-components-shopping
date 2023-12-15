@@ -1,5 +1,41 @@
 <main class="w-full p-[10px] pt-0 text-white">
     <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
-        <div class="text-[20px]">Approve Vendors</div>
+        <div class="w-[70%] flex justify-end items-center flex-col">
+            <div class="text-[20px]">Add Products in Bulk</div>
+            <form action="/api/proxy/temp" method="post" class="w-full mt-[20px]">
+                <div class="w-full border-b-[1px] border-[#2d2a2a]" id="cat">
+
+                <textarea id="areastyle1" name="prodDesc" placeholder="Format: 
+                {(field: value), ... n}; {(name: value), (desc: value), ... n}; ...n
+        
+                This format follows the provided rules:
+                    1. Products are enclosed in curly braces {} and end with a semicolon ;.
+                    2. Each product's fields and values are enclosed in parentheses () with a colon : between each field and its value.
+                    3. Each field block is divided by a comma ,.
+                    4. The required field types for a product are name, desc, price, stock.
+                    5. Only one additional field type is present, which is not required, i.e., imgs.
+                    6. The order of the fields within a product is flexible, as long as the syntax is correct.
+                    7. All of the written products will come under the above-chosen category." class="h-[300px] resize-none w-full my-[10px] bg-[#312f2f] focus:bg-[#424040] outline-none p-[10px] placeholder:text-[#aeacac] placeholder:whitespace-pre-wrap" required></textarea>
+
+                <div class="w-full flex flex-row my-[10px]">
+                    <button id="btnstyle1" type="reset" class="bg-red-700 hover:bg-red-800 w-full h-[35px] mr-[20px]">Clear</button>
+                    <button id="btnstyle1" type="submit" class="bg-red-700 hover:bg-red-800 w-full h-[35px]">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 </main>
+
+<!--
+    Format: 
+        {(field: value), ... n}; {(name: value), (desc: value), ... n}; ...n
+
+        This format follows the provided rules:
+            1. Products are enclosed in curly braces {} and end with a semicolon ;.
+            2. Each product's fields and values are enclosed in parentheses () with a colon : between each field and its value.
+            3. Each field block is divided by a comma ,.
+            4. The required field types for a product are name, desc, price, stock.
+            5. Only one additional field type is present, which is not required, i.e., imgs.
+            6. The order of the fields within a product is flexible, as long as the syntax is correct.
+            7. All of the written products will come under the above-chosen category.
+-->

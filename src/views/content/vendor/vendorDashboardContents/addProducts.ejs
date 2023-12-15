@@ -1,47 +1,39 @@
-<main class="w-auto mx-4 flex justify-center mb-[20px]">
-    <div class="w-[500px] py-[5px] bordergradient overflow-hidden">
-    <div class="w-full bg-white p-[30px] flex justify-end items-center flex-col">
-        <div class="text-[20px]">Add Product</div>
-        <form action="/api/proxy/postproddata" method="post" class="w-full">
-            <div class="bordergradient w-full h-[50px] my-[20px] overflow-hidden">
-                <select id="0" name="0" onchange="getThisSub(this.value, this.id)" class="formfield h-[45px]" required>
-                    <option value="">Select the Category</option>
-                    <% rootCat.forEach(element => { %>
-                        <option value="<%= element.category_id%>"><%= element.alt_name%></option>
-                    <% }) %>
-                </select>
-            </div>
-            <span id="subcategories"></span>
-
-            <input type="hidden" name="vendorid" value="<%- vid %>">
-
-            <div class="bordergradient w-full h-[43px] my-[20px] overflow-hidden">
-                <input type="text" id="prodName" placeholder="Name of the Product..." name="prodName" class="formfield h-[40px]" required>
-            </div>
-    
-            <div class="flex w-full h-[45px] my-[20px]">
-                <div class="bordergradient w-full h-[43px] overflow-hidden mr-[20px]">
-                    <input type="text" id="prodPrice" placeholder="Price of the Product..." name="prodPrice" class="formfield h-[40px]" required>
+<main class="w-full p-[10px] pt-0 text-white">
+    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
+        <div class="w-[70%] flex justify-end items-center flex-col">
+            <div class="text-[20px]">Add Product</div>
+            <form action="/api/proxy/postproddata" method="post" class="w-full mt-[20px]">
+                <div class="w-full border-b-[1px] border-[#2d2a2a]" id="cat">
+                    <div class="w-full flex flex-row my-[10px]" id="thisis0">
+                        <select id="0" name="depth0" onchange="getThisSub(this.value, this.id)" class="w-full h-fit bg-[#312f2f] focus:bg-[#424040] outline-none p-[10px] text-[#aeacac]" required>
+                            <option value="">Select the Category</option>
+                            <% rootCat.forEach(element => { %>
+                                <option value="<%= element.category_id%>"><%= element.alt_name%></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <span id="subcategories"></span>
                 </div>
-                <div class="bordergradient w-full h-[43px] overflow-hidden">
-                    <input type="text" id="prodQuantity" placeholder="Quantity..." name="prodQuantity" class="formfield h-[40px]" required>
+    
+                <input type="hidden" name="vendorid" value="<%- vid %>">
+    
+                <input type="text" id="prodName" placeholder="Name of the Product..." name="prodName" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+        
+                <div class="w-full flex flex-row my-[10px]">
+                    <input type="text" id="prodPrice" placeholder="Price of the Product..." name="prodPrice" class="w-full h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac] mr-[10px]" required>
+                    <input type="text" id="prodQuantity" placeholder="Quantity..." name="prodQuantity" class="w-full h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
                 </div>
-            </div>
-    
-            <div class="bordergradient w-full h-[153px] my-[20px] overflow-hidden">
-                <textarea id="areastyle1" name="prodDesc" placeholder="Enter the Product Description..." class="formfield h-[150px] resize-none" required></textarea>
-            </div> 
-    
-            <div class="bordergradient w-full h-[43px] overflow-hidden my-[20px]">
-                <input type="file" name="prodImage" accept=".jpg,.jpeg,.png" id="filestyle1" class="bg-white w-full h-[40px] rounded-t-lg focus:outline-none focus:bg-slate-50 hover:bg-slate-50 style1filebutton" required>
-            </div>
-    
-            <div class="flex w-full h-[45px] my-[20px]">
-                <button id="btnstyle1" type="reset" onclick="resetSel()" class="style1button w-full h-[40px] mr-[20px]">Clear</button>
-                <button id="btnstyle1" type="submit" class="style1button w-full h-[40px]">Submit</button>
-            </div>
+        
+                <textarea id="areastyle1" name="prodDesc" placeholder="Enter the Product Description..." class="h-[150px] resize-none w-full my-[10px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none p-[10px] placeholder:text-[#aeacac]" required></textarea>
 
-        </form>
-    </div>
+                <input type="file" name="prodImage" accept=".jpg,.jpeg,.png" id="filestyle1" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] outline-none text-[#aeacac] file:bg-red-700 file:hover:bg-red-800 file:h-full file:text-white file:border-0 file:px-[10px] file:mr-[20px]" required multiple>
+        
+                <div class="w-full flex flex-row my-[10px]">
+                    <button id="btnstyle1" type="reset" onclick="resetSel()" class="bg-red-700 hover:bg-red-800 w-full h-[35px] mr-[20px]">Clear</button>
+                    <button id="btnstyle1" type="submit" class="bg-red-700 hover:bg-red-800 w-full h-[35px]">Submit</button>
+                </div>
+    
+            </form>
+        </div>
     </div>
 </main>

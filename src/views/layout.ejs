@@ -29,7 +29,7 @@
             <% if (loggedIn.length === 0) { %>
                 <%- include('partials/header', {header : 'default'}) %>
             <% } else { %>
-                <%- include('partials/header', {header : loggedIn[0], user_id : loggedIn[1]}) %>
+                <%- include('partials/header', {header : loggedIn[0], username : loggedIn[1]}) %>
             <% } %>
     
             <% if (typeof goBack != 'undefined') { %>

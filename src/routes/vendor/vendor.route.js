@@ -3,7 +3,7 @@ const router = express.Router();
 
 const vendorDashboard = require('./vendorDashboard.route');
 const vendorController = require('../../controllers/vendor/vendor.controller');
-const { securePassword } = require('../../middleware/hashingMiddleware');
+const { securePassword } = require('../../middleware/hashing.middleware');
 const vendorMiddleware = require('../../middleware/vendor.middleware')
 const { forVendor } = require('../../middleware/authentication.middleware');
 

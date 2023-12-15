@@ -22,24 +22,26 @@
             <section class="w-[80%] pb-[20px] ml-[10px] border-l-[1px] border-[#2d2a2a] px-[10px]">
                 <h1 class="ml-[10px] mt-[10px]"><%- products.length %> product(s) found</h1>
                 <% products.forEach(element => { %>
-                    <div class="w-full h-[150px] bg-[#312f2f] hover:bg-[#363535] mt-[20px]">
+                    <div class="w-full h-[200px] bg-[#312f2f] hover:bg-[#363535] mt-[20px]">
                         <a href="/item?id=<%- element.product_id%>" class="w-full flex flex-row h-full">
-                            <div class="h-full p-[5px] pr-[10px]">
-                                <img src="<%- element.product_image %>" alt="" class="h-full">
+                            <div class="h-full p-[5px] pr-[10px] w-[250px]">
+                                <img src="<%- element.product_image %>" alt="" class="h-full w-full">
                             </div>
-                            <div class="w-full mr-[10px] p-[10px]">
-                                <div class="text-[20px] line-clamp-2 border-b-[1px] border-[#4a4646] pb-[5px]"><%- element.product_name %></div>
-                                <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
-                                <div class="w-full text-[15px]">
-                                    <% if (element.total_stock > 5) { %>
-                                        <span class="text-green-700">Instock</span>
-                                    <% } else if (element.total_stock > 0) { %>
-                                        <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
-                                    <% } else { %>
-                                    <span class="text-red-600">Out of Stock</span>
-                                    <% } %>
+                            <div class="w-full mr-[10px] p-[10px] flex flex-col">
+                                <div class="text-[20px] line-clamp-2 border-b-[1px] border-[#4a4646] pb-[5px] w-fit"><%- element.product_name %></div>
+                                <div class="w-full">
+                                    <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
+                                    <div class="w-full text-[15px]">
+                                        <% if (element.total_stock > 5) { %>
+                                            <span class="text-green-700">Instock</span>
+                                        <% } else if (element.total_stock > 0) { %>
+                                            <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
+                                        <% } else { %>
+                                        <span class="text-red-600">Out of Stock</span>
+                                        <% } %>
+                                    </div>
+                                    <div class="w-full text-[15px] text-gray-300">Sold by <%= element.organization_name%></div>
                                 </div>
-                                <div class="w-full text-[15px] text-gray-300">Sold by <%= element.organization_name%></div>
                             </div>
                         </a>
                     </div>

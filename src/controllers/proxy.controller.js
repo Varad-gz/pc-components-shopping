@@ -9,6 +9,13 @@ const adminHeader = {
     }
 };
 
+const vendorHeader = {
+    headers: {
+        'x-user': 'vendor',
+        'x-backendnumber' : process.env.VENDOR_PROXY_CHECK
+    }
+};
+
 module.exports = {
     getEditPopup: async (req, res) => {
         const category_id = req.query.category_id;
@@ -121,13 +128,13 @@ module.exports = {
     },
 
     getSubcategoriesForVendor: async (req, res) => {
-        console.log('dasdada');
         try {
             const category_id = req.query.category_id;
             const data = await axios.get(`http://localhost:3000/api/proxy/forvendor/getcat`, {
                 params: {
                     id: category_id
-                }
+                },
+                ...vendorHeader
             });
             const depth = data.data[0].category_depth;
             const jsonObj = {
@@ -137,17 +144,28 @@ module.exports = {
             };
             res.json(jsonObj);
         } catch (err) {
-            if (err instanceof TypeError) {
-                res.json({id: 'cat'});
+            if (err instanceof TypeError) {}
+            else if (err.response && err.response.status === 403) {
+                res.status(403).json({ error: 'Forbidden' });
+            } else {
+                console.log(err);
             }
         }
     },
 
     postProdData: async (req, res) => {
-        const body = req.body;
-        const response = await axios.post('http://localhost:3000/api/proxy/forvendor/postnewprod', body);
-        req.flash(response.data.type, response.data.message);
-        res.redirect(response.data.redirectLink);
+        try {
+            const body = req.body;
+            const response = await axios.post('http://localhost:3000/api/proxy/forvendor/postnewprod', body, vendorHeader);
+            req.flash(response.data.type, response.data.message);
+            res.redirect(response.data.redirectLink);
+        } catch (err) {
+            if (err.response && err.response.status === 403) {
+                res.redirect('/forbidden-page');
+            } else {
+                console.log(err);
+            }
+        }
     },
 
     postVendorApprovalStatus: async (req, res) => {

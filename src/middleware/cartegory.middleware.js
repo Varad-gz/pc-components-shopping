@@ -12,13 +12,17 @@ module.exports = {
     getLowestDepth: (req, res, next) => {
         const keys = Object.keys(req.body);
         let deep = 0;
+        let depthkeysarr = []
         keys.forEach(element => {
-            if(parseInt(element) > deep) {
-                deep = parseInt(element);
+            if(element === `depth${deep}`) {
+                deep++;
+                depthkeysarr.push(element);
             }
         });
-        const cat = deep.toString();
-        req.body.category_id = parseInt(req.body[cat]);
+        req.body.category_id = req.body[`depth${deep-1}`];
+        depthkeysarr.forEach(element => {
+            delete req.body[`${element}`]
+        })
         next();
     },
 

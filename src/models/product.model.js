@@ -2,17 +2,18 @@ const {pquery} = require('../utils/promisified');
 
 function Product(prodObj) {
     this.name = prodObj.prodName;
-    this.price = parseInt(prodObj.prodPrice);
-    this.quantity = parseInt(prodObj.prodQuantity);
+    this.price = prodObj.prodPrice;
+    this.quantity = prodObj.prodQuantity;
     this.description = prodObj.prodDesc;
     this.cat = prodObj.category_id;
     this.image = prodObj.prodImage;
+    this.vendor_id = prodObj.vendorid
 }
 
 
 Product.prototype.add = async function() {
-    const sql_query = `INSERT INTO products (product_name, product_description, unit_price, total_stock, category_id, vendor_id, product_image_folder) VALUES (?, ?, ?, ?, ?, ?, ?);`
-    const sql_values = [this.name, this.description, this.price, this.quantity, this.cat, 2, this.image];
+    const sql_query = `INSERT INTO products (product_name, product_description, unit_price, total_stock, category_id, vendor_id, product_image) VALUES (?, ?, ?, ?, ?, ?, ?);`
+    const sql_values = [this.name, this.description, this.price, this.quantity, this.cat, this.vendor_id, this.image];
     try {
         return await pquery(sql_query, sql_values);
     } catch (err) {

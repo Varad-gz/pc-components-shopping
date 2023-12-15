@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {parseNewCat} = require('../../middleware/cartegoryParser');
+const {parseNewCat} = require('../../middleware/cartegory.middleware');
 const manageProductsCategoryController = require('../../controllers/admin/adminDashboardController/manageProductsCategory.controller'); 
 const approveVendorController = require('../../controllers/admin/adminDashboardController/approveVendor.controller');
 

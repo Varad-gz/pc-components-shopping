@@ -47,10 +47,10 @@ module.exports = {
     },
 
     createSelectForCategoriesVendor: (data) => {
-        let newSelect = `<div class="w-full flex flex-row my-[20px]">
-        <select id="${data[0].category_depth}" name="${data[0].category_depth}" onchange="getThisSub(this.value, this.id)" class="w-full h-fit bg-[#312f2f] focus:bg-[#424040] outline-none p-[10px] text-[#aeacac] shadow-md shadow-black" required>
-        <option value="">Select the Category</option>
-        <option value="new" class="bg-red-700 hover:bg-red-800 text-white">Add a New Category</option>
+        let newSelect = `
+            <div class="w-full flex flex-row my-[10px]">
+            <select id="${data[0].category_depth}" name="depth${data[0].category_depth}" onchange="getThisSub(this.value, this.id)" class="w-full h-fit bg-[#312f2f] focus:bg-[#424040] outline-none p-[10px] text-[#aeacac]" required>
+            <option value="">Select the Category</option>
         `;
 
         const newOption = data.map(element => {

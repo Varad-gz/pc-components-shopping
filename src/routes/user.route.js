@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {securePassword} = require('../middleware/hashingMiddleware');
+const {securePassword} = require('../middleware/hashing.middleware');
 const userController = require('../../src/controllers/user/user.controller');
 const { forUser } = require('../middleware/authentication.middleware');
 

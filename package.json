@@ -25,12 +25,14 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "flowbite": "^1.8.1",
+    "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.6.2",
     "nodemon": "^3.0.1",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "tailwind-scrollbar": "^3.0.5"

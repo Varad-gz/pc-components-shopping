@@ -8,7 +8,7 @@ const forVendorApiProxies = require('./proxies/vendor.proxies');
 const { backendLinkAuthenticate } = require('../middleware/proxy.middleware');
 
 router.use('/foradmin', backendLinkAuthenticate, forAdminApiProxies);
-router.use('/forvendor', forVendorApiProxies);
+router.use('/forvendor', backendLinkAuthenticate, forVendorApiProxies);
 
 //manage categories
 router.get('/catman', forAdmin, proxyController.getSubcategories);
@@ -22,8 +22,11 @@ router.get('/catman/del', forAdmin, proxyController.deleteCat);
 //vendor approval
 router.post('/vendapp', forAdmin, proxyController.postVendorApprovalStatus)
 
+//add product
 router.get('/addprodgetcat', forVendor, proxyController.getSubcategoriesForVendor);
-router.post('/postproddata', proxyController.postProdData);
+router.post('/postproddata', forVendor, proxyController.postProdData);
+
+router.post('/temp',);
 
 
 module.exports = router;
