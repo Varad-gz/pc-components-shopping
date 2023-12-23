@@ -24,7 +24,7 @@
             <% } %>
         
         </head>
-        <body class="bg-[#2b2a2a] scrollbar-thin scrollbar-track-[#1d1b1b] scrollbar-thumb-[#1f1e1e] font-sans flex flex-col min-h-[100vh]">
+        <body class="bg-[#0f0f0f] scrollbar-thin scrollbar-track-black scrollbar-thumb-[#101010] font-sans flex flex-col min-h-[100vh] overflow-x-hidden">
         
             <% if (loggedIn.length === 0) { %>
                 <%- include('partials/header', {header : 'default'}) %>
@@ -38,7 +38,11 @@
     
             <%- body %>
         
-            <%- include('partials/footer') %>
+            <% if (typeof footer != 'undefined') { %>
+                <%- include('partials/footer', {footer : footer}) %>
+            <% } else { %>
+                <%- include('partials/footer') %>
+            <% } %>
         
             <%- include('content/popupflash') %>
         </body>

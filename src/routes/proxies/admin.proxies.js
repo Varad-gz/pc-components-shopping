@@ -9,6 +9,7 @@ router.get('/getcatedit', manageProductsCategoryController.getCatForEdit);
 router.post('/postcatchanges', parseNewCat, manageProductsCategoryController.applyEditChanges);
 router.get('/getcatadd', manageProductsCategoryController.getCatForAdd);
 router.post('/postnewcat', parseNewCat , manageProductsCategoryController.addNewCategory);
+router.post('/delistandpostcat', parseNewCat , manageProductsCategoryController.delistIfExistsAddCat);
 router.get('/getcat', manageProductsCategoryController.getCat);
 router.post('/delcat', manageProductsCategoryController.deleteConditions);
 //router.post('/delist', manageProductsCategoryController.delistItems)

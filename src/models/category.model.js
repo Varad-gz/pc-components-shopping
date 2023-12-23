@@ -1,5 +1,5 @@
 const {pquery} = require('../utils/promisified');
-const sql_db = require('./database');
+const sql_db = require('../../config/database');
 
 function Category(catObj) {
     this.id = catObj.id;
@@ -16,7 +16,7 @@ Category.prototype.add = async function() {
     try {
         return await pquery(sql_query, sql_values);
     } catch (err) {
-        console.log(err);
+        throw err;
     }  
 }
 
@@ -26,7 +26,17 @@ Category.prototype.addWithRef = async function() {
     try {
         return await pquery(sql_query, sql_values);
     } catch (err) {
-        console.log(err);
+        throw err;
+    }  
+}
+
+Category.prototype.delistProdsAndAddWithRef = async function() {
+    const sql_values = [this.name, this.desc, this.alt_name, this.ref, this.depth];
+    const sql_query = `call DelistAndAddCategory(?, ?, ?, ?, ?);`;
+    try {
+        return await pquery(sql_query, sql_values);
+    } catch (err) {
+        throw err;
     }  
 }
 
@@ -36,7 +46,7 @@ Category.prototype.update = async function() {
     try {
         return await pquery(sql_query, sql_values);
     } catch (err) {
-        console.log(err);
+        throw err;
     }  
 }
 
@@ -77,13 +87,14 @@ module.exports = {
         });
     },
 
-    doesThisCatHaveProduct : (id) => {
-        return new Promise((resolve, reject) => {
-            sql_db.query("select * from products where products.category_id = ?;", id, (err, result) => {
-                if(err) reject(err)
-                resolve(result);
-            });
-        });
+    doesThisCatHaveProducts : async (id) => {
+        const sql_values = [id];
+        const sql_query = `select count(*) as prodcount from products where category_id = ?;`;
+        try {
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }  
     },
 
     deleteCategory : (id) => {

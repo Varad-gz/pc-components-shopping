@@ -1,36 +1,37 @@
-<main class="w-full p-[10px] text-white">
-    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex flex-col">
-        <div class="w-full border-b-[1px] border-[#2d2a2a] pb-[20px]">
+<main class="w-full text-white">
+    <div class="bg-[#0f0f0f] shadow-sm shadow-black p-[10px] w-full flex flex-col">
+        <div class="w-full py-[20px] border-b-[1px] border-[#2d2a2a]">
             <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center">
-                <div class="w-[50%] flex flex-row shadow-lg shadow-black overflow-hidden relative rounded-full bg-[#363636]">
-                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#363636]" placeholder="Search for a product..." name="prodQuery" required>
-                    <!--<div class="w-[50px] h-[50px] right-[18px] rotate-45 bg-red-700 absolute z-0"></div>-->
-                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 rounded-full">Search</button>
+                <div class="w-[50%] flex flex-row h-[50px] shadow-md shadow-black">
+                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#1f1f1f]" placeholder="Search for a product..." name="prodQuery" required>
+                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 flex justify-center items-center">Search</button>
                 </div>
             </form>
         </div>
-
         <div class=" w-full flex flex-row mt-[10px]">
-            <aside class="w-[20%] h-fit bg-[#262525] shadow-md shadow-black py-[20px]">
+            <aside class="w-[20%] h-fit py-[10px]">
                 <div class="w-full text-center text-[20px]">Search by Category</div>
-                <div class="flex flex-col items-center border-t-[1px] border-[#4e4949] mt-[10px] pt-[10px]">
+                <div class="flex flex-col items-center mt-[10px] pt-[10px]">
                     <% cats.forEach(element => { %>
-                        <a href="/api/proxy/getitems?category=<%- element.category_name %>" class="w-[90%] p-[5px] my-[10px] shadow-md bg-[#363636] shadow-black hover:bg-[#403f3f] text-center"><span class="truncate text-[16px] text-center"><%- element.alt_name %></span></a>
+                        <a href="/api/proxy/getitems?category=<%- element.category_name %>" class="w-[90%] h-[40px] py-[10px] mb-[10px] bg-[#312f2f] hover:bg-[#424040] text-center"><span class="line-clamp-1 text-[16px] text-center"><%- element.alt_name %></span></a>
                     <% }) %>
                 </div>
             </aside>
-            <section class="w-[80%] pb-[20px] ml-[10px] border-l-[1px] border-[#2d2a2a] px-[10px]">
-                <h1 class="ml-[10px] mt-[10px]"><%- products.length %> product(s) found</h1>
+            <section class="w-[80%] pb-[10px] ml-[10px] border-l-[1px] border-[#2d2a2a] px-[10px]">
+                <% if (typeof count != 'undefined') { %>
+                    <h1 class="ml-[10px] mt-[10px]"><%- count %> product(s) found</h1>
+                <% } %>
                 <% products.forEach(element => { %>
-                    <div class="w-full h-[200px] bg-[#312f2f] hover:bg-[#363535] mt-[20px]">
+                    <div class="w-full h-[200px] bg-[#1b1b1b] hover:bg-[#262626] mt-[20px]">
                         <a href="/item?id=<%- element.product_id%>" class="w-full flex flex-row h-full">
                             <div class="h-full p-[5px] pr-[10px] w-[250px]">
                                 <img src="<%- element.product_image %>" alt="" class="h-full w-full">
                             </div>
                             <div class="w-full mr-[10px] p-[10px] flex flex-col">
-                                <div class="text-[20px] line-clamp-2 border-b-[1px] border-[#4a4646] pb-[5px] w-fit"><%- element.product_name %></div>
+                                <div class="text-[20px] line-clamp-2 pb-[5px] w-fit"><%- element.product_name %></div>
+                                <div class="w-full h-[2px] bg-[#2d2a2a]"></div>
                                 <div class="w-full">
-                                    <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
+                                    <div class="w-full mt-[5px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
                                     <div class="w-full text-[15px]">
                                         <% if (element.total_stock > 5) { %>
                                             <span class="text-green-700">Instock</span>
@@ -48,6 +49,5 @@
                 <% }) %>
             </section>    
         </div>
-
     </div>
 </main>

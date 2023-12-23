@@ -33,5 +33,4 @@ module.exports = {
         delete req.body.category;
         next();
     }
-
 }

@@ -1,10 +1,7 @@
 //const addProductsModel = require('../../../models/vendor/vendorDashboardModels/addProducts.model')
 const {getRootCategory, getCategoriesWithRef} = require('../../../models/category.model');
 const {Product} = require('../../../models/product.model');
-
-const path = require('path');
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
+const { deleteFolderorInsertDb } = require('../../../utils/deleteUnnecessayUploads')
 
 module.exports = {
 
@@ -36,12 +33,12 @@ module.exports = {
         }
     },
 
-    addProduct : async (req, res) => {
-        /**
+    /*addProduct : async (req, res) => {
+        
          * Ensure that the paths in the code below are correct. 
          * All paths for image transfers are hardcoded, 
          * with the source being the 'Downloads' folder and the destination being the 'public/uploads' folder.
-         */
+         * 
         let body = req.body;
         let sourceAbsPaths = []
         const folderName = uuidv4();
@@ -68,6 +65,28 @@ module.exports = {
             res.json(resInfo);
         } catch (err) {
             fs.rmSync(destinationAbsPath, {recursive: true});
+            const resInfo = {
+                type: 'alert',
+                message: ['Error Message', 'Process Failed!'],
+                redirectLink: '/vendor/dashboard/add-product'
+            }
+            res.json(resInfo);
+        }
+    }*/
+
+    addProduct : async (req, res) => {
+        const body = req.body;
+        try {
+            const newProduct = new Product(body);
+            await newProduct.add();
+            const resInfo = {
+                type: 'alert',
+                message: 'Product added successfully...',
+                redirectLink: '/vendor/dashboard'
+            }
+            res.json(resInfo);
+        } catch (err) {
+            deleteFolderorInsertDb(body.folderpath);
             const resInfo = {
                 type: 'alert',
                 message: ['Error Message', 'Process Failed!'],

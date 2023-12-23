@@ -6,7 +6,7 @@ function Product(prodObj) {
     this.quantity = prodObj.prodQuantity;
     this.description = prodObj.prodDesc;
     this.cat = prodObj.category_id;
-    this.image = prodObj.prodImage;
+    this.image = prodObj.folderpath;
     this.vendor_id = prodObj.vendorid
 }
 
@@ -24,7 +24,7 @@ Product.prototype.add = async function() {
 module.exports = {
 
     getAll: async () => { 
-        const sql_query = `select p.product_id, p.product_name, p.unit_price, p.total_stock, p.product_description, p.category_id, p.product_image, v.organization_name from products p join vendor_table v on p.vendor_id = v.vendor_id;`
+        const sql_query = `select p.product_id, p.product_name, p.unit_price, p.total_stock, p.product_description, p.category_id, p.product_image, v.organization_name from products p join vendor_table v on p.vendor_id = v.vendor_id where p.delisted = 0;`
         try {
             return await pquery(sql_query);
         } catch (err) {
@@ -97,6 +97,15 @@ module.exports = {
         const sql_values = [category_name];
         try {
             return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }
+    },
+
+    getAllCount: async() => {
+        const sql_query = `select count(*) from products;`
+        try {
+            return await pquery(sql_query);
         } catch (err) {
             throw err;
         }

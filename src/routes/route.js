@@ -8,18 +8,12 @@ const itemRoute = require('./item.route');
 const vendorRoute = require('./vendor/vendor.route');
 const adminRoute = require('./admin/admin.route')
 const apiProxy = require('./api.proxy');
+const errorRoute = require('./error.route');
 const {ifAuthenticated} = require('../middleware/authentication.middleware');
 
 router.use('/api/proxy', apiProxy);
-router.get('/forbidden-page', (req, res) => {
-    delete req.session.loggedIn;
-    res.render('content/forbiddenPage', {
-        title: '403 Forbidden',
-    });
-});
-
+router.use('/error', errorRoute);
 router.use(ifAuthenticated);
-
 router.use(homeRoute);
 router.use(userRoute);
 router.use('/browse', browseRoute);

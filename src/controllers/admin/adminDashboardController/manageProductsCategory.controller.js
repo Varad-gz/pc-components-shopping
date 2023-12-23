@@ -1,4 +1,3 @@
-//const manageProductCategoryModel = require('../../../models/admin/adminDashboardModels/manageProductsCategory.model');
 const Category = require('../../../models/category.model');
 
 module.exports = {
@@ -83,6 +82,33 @@ module.exports = {
             res.json(resInfo);
         }
     },
+
+    delistIfExistsAddCat : async (req, res) => {
+        try {
+            const body = req.body;
+            const [rows] = await Category.doesThisCatHaveProducts(body.ref);
+            const newCat = new Category.Category(body);
+            if(rows.prodcount > 0) {
+                await newCat.delistProdsAndAddWithRef();
+            } else {
+                await newCat.addWithRef();
+            }
+            const resInfo = {
+                type: 'alert',
+                message: 'Category added successfully...',
+                redirectLink: '/admin/dashboard'
+            }
+            res.json(resInfo);
+        } catch (err) {
+            const resInfo = {
+                type: 'alert',
+                message: ['Error Message', 'Process Failed!'],
+                redirectLink: '/admin/dashboard/manage-category'
+            }
+            res.json(resInfo);
+        }
+    },
+
 
     getCatForAdd : async (req, res) => {
         try {

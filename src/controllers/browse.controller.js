@@ -1,4 +1,4 @@
-const {getAll, getByCatname, getSearchedProds} = require('../models/product.model');
+const {getAll, getByCatname, getSearchedProds, getAllCount} = require('../models/product.model');
 const {getRootCategory, getCategoriesWithRef, getAllCategories} = require('../models/category.model');
 
 const fs = require('fs');
@@ -10,7 +10,7 @@ getRootProductsPage : async(req, res) => {
     try {
         const cats = await getRootCategory();
         const items = await getAll();
-        
+
         for (const item of items) {
             if(item.product_image === 'noimg') {
                 item.product_image = path.join('images', 'uploads', 'default', 'noimg.png');
@@ -19,7 +19,6 @@ getRootProductsPage : async(req, res) => {
                 item.product_image = path.join('images', 'uploads', item.product_image.split('\\').pop(), images[0]);
             }
         }
-        console.log(items);
 
         res.render('content/browse', {
             title: 'Browse', 

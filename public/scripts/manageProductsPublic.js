@@ -39,7 +39,7 @@ function getThisSub(x, id) { //id is depth, x is category_id
         })
         .catch(err => {
             if(err.message === 'Forbidden') {
-                window.location.href = '/forbidden-page';
+                window.location.href = '/error/forbidden-page';
             } else {
                 throw err;
             }
@@ -74,27 +74,6 @@ function hasChild(id){
     return false;
 }
 
-/*function deleteThisCategory(category_id) {
-    const api = `${API}/catman/delete`;
-    console.log(api)
-    fetch(api, {
-        method : 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            category_id: category_id
-        }),
-        credentials: 'include'
-    })
-    .then(res => {
-        if (!res.ok) {
-            throw new Error('Network response was not ok');
-        }
-    })
-    .catch(err => console.log(err));
-}*/
-
 function editThisCategory(category_id) {
     if(category_id === "") {
         return false;
@@ -122,7 +101,7 @@ function editThisCategory(category_id) {
     })
     .catch(err => {
         if(err.message === 'Forbidden') {
-            window.location.href = '/forbidden-page';
+            window.location.href = '/error/forbidden-page';
         } else {
             throw err;
         }
@@ -153,7 +132,7 @@ function addThisCategory(parentCatId) {
     })
     .catch(err => {
         if(err.message === 'Forbidden') {
-            window.location.href = '/forbidden-page';
+            window.location.href = '/error/forbidden-page';
         } else {
             throw err;
         }
@@ -171,7 +150,7 @@ function getParentCat(depth) {
 function createAddSpan(id, depth){
     return `
         <div class="border-t-[1px] border-[#2d2a2a] mt-[10px] pt-[10px]">
-            <form action="/api/proxy/catman/add" method="post">
+            <form action="/api/proxy/catman/checkandadd" method="post">
                 <div class="flex justify-center text-[20px]">Add Category</div>
                 <div class="flex justify-center flex-col">
                     <input type="hidden" name="depth" value="${(depth+1)}">

@@ -1,21 +1,69 @@
-<main class="w-full p-[10px] text-white">
-    <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
-        <div class="w-full flex flex-row justify-center items-center">
-            <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
-            <span class="text-[25px] ml-[10px] cursor-default">PC Components Shopping</span>
+<main class="w-full text-white">
+    <!--<img src="/images/home/backgroundimage3.jpg" alt="bgimagepersonaluse" class="h-[700px] w-full" draggable="false">-->
+    <div class="relative">
+        <div class="w-full flex flex-col justify-center items-center bg-black relative pb-[30px]">
+            <img src="/images/navbar/transparent-logo.png" alt="logo" draggable="false">
+            <div class="w-[500px] text-center text-[22px] text-red-600 font-bold absolute top-[100px] left-[200px] cursor-default select-none">Elevate Your Build, Simplify Your Upgrade: Your Trusted Source for Quality PC Components.</div>
         </div>
-        <div class="w-[50%] h-[3px] bg-gradient-to-r from-red-800 via-red-600 to-red-800 mt-[10px]"></div>
-        <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center mt-[20px]">
-                <div class="w-[50%] flex flex-row shadow-lg shadow-black overflow-hidden relative rounded-full bg-[#363636]">
-                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#363636]" placeholder="Search for a product..." name="prodQuery" required>
-                    <!--<div class="w-[50px] h-[50px] right-[18px] rotate-45 bg-red-700 absolute z-0"></div>-->
-                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 rounded-full">Search</button>
+        <div class="w-full absolute top-[180px]">
+            <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center mt-[30px]">
+                <div class="w-[700px] flex flex-row h-[50px] shadow-lg shadow-black">
+                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-gradient-to-r from-[#1e1e1e] via-[#191919] to-[#111111]" placeholder="Search for a product..." name="prodQuery" required>
+                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 flex justify-center items-center">Search</button>
                 </div>
-        </form>
-        <div class="w-[50%] h-[1px] bg-[#2d2a2a] mt-[30px]"></div>
-        <div class="mt-[10px] w-[50%] flex flex-col items-center">
-            <div class="text-[20px]">About us</div>
-            <div class="text-center text-[15px]">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos exercitationem excepturi inventore, officiis quo, ipsum, placeat praesentium vitae nesciunt tempore officia ipsa quod repellendus voluptatibus architecto quas? Possimus, quis perferendis quisquam eligendi illo labore iusto eius voluptate. Doloremque natus quae maxime velit facilis similique nemo, vitae placeat esse? Dolorum quos eos delectus vitae. Laudantium iste sit, ratione quisquam, officia nemo, voluptatum natus quis dicta doloribus nobis amet ut error veniam consectetur fugiat nesciunt eos cum excepturi. Perspiciatis voluptate corporis qui eligendi, sed eveniet repellat distinctio consequuntur numquam quae impedit itaque consectetur rerum incidunt sequi nihil deleniti accusamus maxime enim. Explicabo.</div>
+            </form>
+        </div>
+        <div class="bg-[#F6F6F6] flex flex-col text-black p-[20px]">
+            <div class="text-[25px] flex flex-col mb-[20px]">
+                Browse
+                <div class="w-[60px] h-[4px] bg-red-700"></div>
+            </div>
+
         </div>
     </div>
 </main>
+
+<!--
+    <div id="gpu" class="w-[200px] h-[200px] hover:scale-[1.08] m-[5px] bg-black hover:shadow-lg hover:shadow-black relative">
+                <img id="img" src="/images/newcats/gpu.jpg" alt="graphics-card" class="w-full h-full opacity-50 ">
+                <div class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center p-[10px] opacity-80 hover:opacity-100 cursor-pointer hover:z-5 text-2xl font-bold" onmouseover="document.getElementById('gpu').querySelector('#img').style.opacity = '0.4'" onmouseout="document.getElementById('gpu').querySelector('#img').removeAttribute('style')">GRAPHICS CARD</div>
+            </div>
+    <div class="flex flex-row flex-wrap justify-center mt-[20px]">
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/cpu.png" alt="cpu" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/graphic-card.png" alt="gpu" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/hdd.png" alt="hdd" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/psu.png" alt="psu" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/motherboard.png" alt="motherboard" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/ram.png" alt="ram" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
+            </div>
+            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
+                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
+            </div>
+        </div>
+-->

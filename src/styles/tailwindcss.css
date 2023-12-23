@@ -2,24 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    /*Styling the file input button*/
-    .style1filebutton {
-        @apply file:bg-red-700 file:hover:bg-red-800 file:active:bg-red-900 file:h-[40px] file:rounded-l-lg file:rounded-b-none file:text-white file:text-[15px] file:p-[10px] file:border-none;
+@layer utilities {
+    .select-none {
+      user-select: none;
     }
-
-    .style1button {
-        @apply bg-red-700 shadow-md hover:bg-red-800 active:bg-red-900 active:shadow-sm active:shadow-black shadow-black rounded-lg text-white text-[20px] flex justify-center items-center;
+  
+    .select-text {
+      user-select: text;
     }
-
-    .bordergradient {
-        @apply bg-gradient-to-r from-red-800 via-red-600 to-red-800 shadow-md shadow-black rounded-lg;
+  
+    .select-all {
+      user-select: all;
     }
-
-    .formfield {
-       @apply p-[10px] bg-slate-100 w-full rounded-t-lg focus:outline-none focus:bg-slate-200 focus:border-[1px] focus:border-slate-200 hover:bg-slate-100 placeholder:text-slate-500;
+  
+    .select-auto {
+      user-select: auto;
     }
-}
+  }
 
 /*to-[#c32b2b]
 bg-gradient-to-r from-[#1c0a02] via-[#451d0a] to-[#9c3303]

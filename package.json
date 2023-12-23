@@ -31,8 +31,10 @@
     "nodemon": "^3.0.1",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
+    "rimraf": "^5.0.5",
     "tailwindcss": "^3.3.3",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "tailwind-scrollbar": "^3.0.5"

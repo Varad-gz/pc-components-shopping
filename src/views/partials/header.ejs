@@ -1,27 +1,26 @@
 
 <% if (header === 'default') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
+        <div class="w-full bg-black text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center " id="navbar-logo">
                 <a href="/" class="flex flex-row items-center">
-                    <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
-                    <span class="text-[20px] ml-[10px]" id="navbar-logo-text">PC Components Shopping</span>
+                    <img src="/images/navbar/pcs.png" alt="logo" class="h-[60px]">
+                    <span class="text-[20px] ml-[10px] font-bold select-none" id="navbar-logo-text">PC Components Shopping</span>
                 </a>
             </div>
             <div class="w-[500px] h-[60px] flex flex-row justify-end items-center mr-[20px]">
-                <!--<div class="style1button w-auto h-[30px] px-[10px] py-[20px] mr-[20px] hover:text-slate-50 active:text-slate-100"><a href="/browse">Browse Products</a></div>-->
-                <div class="text-white text-[20px] pr-[20px]"><a href="/browse" class="hover:border-b-[3px] hover:border-red-500">Browse Products</a></div>
-                <div class="text-white text-[20px] pr-[20px] mr-[20px] border-r-[1px] border-gray-50"><a href="/registration" class="hover:border-b-[3px] hover:border-red-500">New User? Register</a></div>
+                <div class="text-white text-[20px] pr-[20px]"><a href="/browse" class="hover:text-red-700">Browse Products</a></div>
+                <div class="text-white text-[20px] pr-[20px] mr-[20px] border-r-[1px] border-gray-50"><a href="/login" class="bg-red-700 hover:bg-red-800 py-[5px] px-[10px] flex justify-center items-center text-black text-lg font-bold"><img src="/images/navbar/user.png" alt="userico" class="h-[30px] mr-[10px]">Log in</a></div>
                 <div class="relative">
                     <div>
                         <img src="/images/navbar/588a64e0d06f6719692a2d10.png" class=" mr-[20px] w-[30px] h-[30px] cursor-pointer" onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
                     </div>
                     <div id="options-menu-items" hidden onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
                         <div class="flex flex-col absolute w-[200px] right-0 pt-[10px] shadow-lg shadow-black cursor-pointer z-10">
-                            <a href="/login" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Log In</a>
-                            <a href="/vendor/login" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Vendor Login</a>
-                            <a href="/vendor/registration" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Become a Vendor</a>
-                            <a href="/admin/login" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Employee Portal</a>
+                            <a href="/registration" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">New User? Register Here</a>
+                            <a href="/vendor/login" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">Vendor Login</a>
+                            <a href="/vendor/registration" class="bg-[#1f1e1e] hover:bg-red-800 p-[10px] text-white">Become a Vendor</a>
+                            <a href="/admin/login" class="bg-[#1f1e1e] hover:bg-red-800 p-[10px] text-white">Employee Portal</a>
                         </div>
                     </div>
                 </div>
@@ -32,26 +31,26 @@
 
 <% if (header === 'user') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
+        <div class="w-full bg-black text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center ">
                 <a href="/" class="flex flex-row items-center">
-                    <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
-                    <span class="text-[20px] ml-[10px] mr-[20px]" id="navbar-logo-text">PC Components Shopping</span>
+                    <img src="/images/navbar/pcs.png" alt="logo" class="h-[60px]">
+                    <span class="text-[20px] ml-[10px] font-bold select-none" id="navbar-logo-text">PC Components Shopping</span>
                 </a>
                 <div class="pl-[20px] border-l-[1px] border-gray-50 text-white text-[20px]"><%- username %></div>
             </div>
             <div class="w-[500px] h-[60px] flex flex-row justify-end items-center mr-[20px]">
                 <!--<div class="style1button w-auto h-[30px] px-[10px] py-[20px] mr-[20px] hover:text-slate-50 active:text-slate-100"><a href="/browse">Browse Products</a></div>-->
-                <div class="text-white text-[20px] pr-[20px]"><a href="/browse" class="hover:border-b-[3px] hover:border-red-500">Browse Products</a></div>
+                <div class="text-white text-[20px] pr-[20px]"><a href="/browse" class="hover:text-red-700">Browse Products</a></div>
                 <div class="relative">
                     <div>
                         <img src="/images/navbar/588a64e0d06f6719692a2d10.png" class=" mr-[20px] w-[30px] h-[30px] cursor-pointer" onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
                     </div>
                     <div id="options-menu-items" hidden onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
                         <div class="flex flex-col absolute w-[200px] right-0 pt-[10px] shadow-lg shadow-black cursor-pointer z-10">
-                            <a href="/cart" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">View Cart</a>
-                            <a href="/profile" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Manage Profile</a>
-                            <a href="/logout" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Log out</a>
+                            <a href="/cart" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">View Cart</a>
+                            <a href="/profile" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">Manage Profile</a>
+                            <a href="/logout" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -62,13 +61,13 @@
 
 <% if (header === 'vendor') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
+        <div class="w-full bg-black text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center ">
                 <a href="/" class="flex flex-row items-center">
-                    <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
-                    <span class="text-[20px] ml-[10px] mr-[20px]" id="navbar-logo-text">PC Components Shopping</span>
+                    <img src="/images/navbar/pcs.png" alt="logo" class="h-[60px]">
+                    <span class="text-[20px] ml-[10px] font-bold select-none" id="navbar-logo-text">PC Components Shopping</span>
                 </a>
-                <div class="pl-[20px] border-l-[1px] border-gray-50 text-white text-[20px]"><%- username %></div>
+                <div class="ml-[20px] pl-[20px] border-l-[1px] border-gray-50 text-white text-[20px]"><%- username %></div>
             </div>
             <div class="w-[500px] h-[60px] flex flex-row justify-end items-center mr-[20px]">
                 <div class="relative">
@@ -77,8 +76,8 @@
                     </div>
                     <div id="options-menu-items" hidden onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
                         <div class="flex flex-col absolute w-[200px] right-0 pt-[10px] shadow-lg shadow-black cursor-pointer z-10">
-                            <a href="/vendor/profile" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Manage Profile</a>
-                            <a href="/vendor/logout" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Log Out</a>
+                            <a href="/vendor/profile" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">Manage Profile</a>
+                            <a href="/vendor/logout" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -89,13 +88,13 @@
 
 <% if (header === 'admin') { %>
     <nav class="w-full">
-        <div class="w-full bg-[#1f1e1e] text-white flex justify-between items-center py-[20px]">
+        <div class="w-full bg-black text-white flex justify-between items-center py-[20px]">
             <div class="text-white w-auto h-[60px] flex flex-row ml-[20px] items-center ">
                 <a href="/" class="flex flex-row items-center">
-                    <img src="/images/navbar/logored.svg" alt="logo" class="w-[60px] h-[60px]">
-                    <span class="text-[20px] ml-[10px] mr-[20px]" id="navbar-logo-text">PC Components Shopping</span>
+                    <img src="/images/navbar/pcs.png" alt="logo" class="h-[60px]">
+                    <span class="text-[20px] ml-[10px] font-bold select-none" id="navbar-logo-text">PC Components Shopping</span>
                 </a>
-                <div class="pl-[20px] border-l-[1px] border-gray-50 text-white text-[20px]"><%- username %></div>
+                <div class="ml-[20px] pl-[20px] border-l-[1px] border-gray-50 text-white text-[20px]"><%- username %></div>
             </div>
             <div class="w-[500px] h-[60px] flex flex-row justify-end items-center mr-[20px]">
                 <div class="relative">
@@ -104,7 +103,7 @@
                     </div>
                     <div id="options-menu-items" hidden onmouseover="showList('options-menu-items')" onmouseleave="hideList('options-menu-items')">
                         <div class="flex flex-col absolute w-[200px] right-0 pt-[10px] shadow-lg shadow-black cursor-pointer z-10">
-                            <a href="/admin/logout" class="bg-[#1f1e1e] hover:bg-gray-700 p-[10px] text-white">Log Out</a>
+                            <a href="/admin/logout" class="bg-[#1f1e1e] hover:bg-red-800  p-[10px] text-white">Log Out</a>
                         </div>
                     </div>
                 </div>

@@ -52,11 +52,11 @@ module.exports = {
     authenticateUser: async(req, res) => {
         try {
             const user = await userModel.checkUserExists(req.body.email);
-            const username = user[0].first_name + ' ' + user[0].last_name;
             if(user.length === 0) {
                 req.flash('alertWithButton', 'No such email registered');
                 res.redirect('/login');
             } else if(await passwordOperations.comparePassword(req.body.password, user[0].password) === true) {
+                const username = user[0].first_name + ' ' + user[0].last_name;
                 req.session.loggedIn = {userid: user[0].customer_id, username: username, role: 'user'}
                 req.flash('alert', 'Logged in successfully');
                 if(req.session.prodLink){

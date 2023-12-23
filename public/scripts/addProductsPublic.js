@@ -1,10 +1,8 @@
 const API = 'http://localhost:3000/api/proxy'
-//}/temp?category_id=${x}
 
-function getThisSub(x, id) { //id is depth, x is category_id
-    checkAndRemoveChild(id); //checks if child subcategories are present and removes them
+function getThisSub(x, id) {
+    checkAndRemoveChild(id);
     const api = `${API}/addprodgetcat?category_id=${x}`;
-    console.log(api);
     fetch(api, {
         method : 'GET',
         credentials: "include"
@@ -29,7 +27,7 @@ function getThisSub(x, id) { //id is depth, x is category_id
     .catch(err => {
         if(err instanceof TypeError) {} 
         else if(err.message === 'Forbidden') {
-            window.location.href = '/forbidden-page';
+            window.location.href = '/error/forbidden-page';
         }
         else {throw err}
     });
@@ -44,6 +42,69 @@ function checkAndRemoveChild(id) {
     }
 }
 
-function resetSel() {
+function resetForm() {
     checkAndRemoveChild(0);
+    const incval = document.getElementById('incorrectval');
+    if(incval){
+        incval.remove();
+        const submit = document.getElementById('submitbtn');
+        submit.disabled = false;
+        submit.removeAttribute('style')
+        document.getElementById('prodPrice').removeAttribute('style');
+        document.getElementById('prodQuantity').removeAttribute('style');
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const quantity = document.getElementById('prodQuantity');
+    const price = document.getElementById('prodPrice');
+    const submit = document.getElementById('submitbtn');
+
+    price.addEventListener('input', () => {
+        const incval = document.getElementById('prcdiv').querySelector('#incorrectval');
+        if(!isNaN(Number(price.value)) || price.value == "") {
+            if(incval){
+                incval.remove();
+                updateStyles(false, price)
+            }
+        }
+        else if(!incval){
+            document.getElementById('prcdiv').appendChild(createErrorMessage())
+            updateStyles(true, price)
+        }
+    });
+
+    quantity.addEventListener('input', () => {
+        const incval = document.getElementById('qtydiv').querySelector('#incorrectval');
+        if(!isNaN(Number(quantity.value)) || quantity.value == "") {
+            if(incval){
+                incval.remove();
+                updateStyles(false, quantity)
+            }
+        }
+        else {
+            submit.disabled = true;
+            if(!incval){
+                document.getElementById('qtydiv').appendChild(createErrorMessage())
+                updateStyles(true, quantity)
+            }
+        }
+    });
+
+    function createErrorMessage() {
+        const newDiv = document.createElement('div');
+        newDiv.id = 'incorrectval';
+        newDiv.style.width = '100%';
+        newDiv.style.color = '#ff0010';
+        newDiv.style.fontSize = '15px';
+        newDiv.innerHTML = 'Incorrect Input!!';
+        return newDiv;
+    }
+    
+    function updateStyles(isInvalid, inp) {
+        submit.disabled = isInvalid;
+        if(isInvalid) submit.setAttribute('style', 'background-color: #9A1B1A;')
+        else submit.removeAttribute('style')
+        inp.style.border = isInvalid ? '1px solid #ff0010' : 'none';
+    }
+})

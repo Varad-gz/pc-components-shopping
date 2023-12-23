@@ -1,5 +1,5 @@
 const {pquery} = require('../utils/promisified');
-const sql_db = require('./database');
+const sql_db = require('../../config/database');
 
 function User(userObj) {
     this.fname = userObj.fname,

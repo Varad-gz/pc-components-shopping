@@ -1,5 +1,52 @@
-<footer class="w-full mt-auto">
-    <div class="w-full h-fit p-[20px] bg-[#1f1e1e] text-white flex justify-center items-center">
-        TYBBA(CA) Project
-    </div>
-</footer>
+<% if (typeof footer === 'undefined') { %>
+    <footer class="w-full mt-auto text-white">
+        <div class="w-full h-fit p-[20px] bg-black flex justify-center items-center flex-col">
+            <div>Varad Pandit</div>
+            <div>TYBBA(CA) Project</div>
+        </div>
+    </footer>
+<% } else if (footer === 'home') { %>
+    <footer class="w-full mt-auto text-white">
+        <div class="w-full h-fit p-[20px] bg-black flex flex-row">
+            <div class="w-fit flex flex-col">
+                <div class="flex flex-row items-center mb-[20px]">
+                    <img src="/images/navbar/pcs.png" alt="logo" class="h-[60px]">
+                    <span class="text-[20px] ml-[10px] font-bold select-none">PC Components Shopping</span>
+                </div>
+                <div class="text-[20px] flex flex-col mb-[10px]">
+                    About us
+                    <div class="w-[60px] h-[4px] bg-red-700"></div>
+                </div>
+                <div class="w-full">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus labore, deleniti inventore blanditiis consectetur amet culpa cumque sapiente voluptate reiciendis, illo possimus sequi. Id ipsa, voluptates harum amet illo debitis!</div>
+            </div>
+            <div class="w-fit ml-[10px] flex flex-col whitespace-nowrap">
+                <div class="text-[20px] flex flex-col">
+                    Quick links
+                    <div class="w-[60px] h-[4px] bg-red-700"></div>
+                </div>
+                <div class="w-full flex flex-col p-[10px]">
+                    <a href="/" class="hover:text-red-700 pb-[5px] w-fit">Home</a>
+                    <a href="/login" class="hover:text-red-700 pb-[5px] w-fit">Sign in</a>
+                    <a href="/registration" class="hover:text-red-700 pb-[5px] w-fit">Sign up</a>
+                    <a href="/vendor/registration" class="hover:text-red-700 pb-[5px] w-fit">Vendor registration</a>
+                    <a href="/admin/login" class="hover:text-red-700 pb-[5px] w-fit">Employee portal</a>
+                </div>
+            </div>
+            <div class="w-fit ml-[10px]">
+                <div class="text-[20px] flex flex-col mb-[10px] whitespace-nowrap">
+                    Social media
+                    <div class="w-[60px] h-[4px] bg-red-700"></div>
+                </div>
+                <div class="w-full flex flex-row flex-wrap p-[10px] justify-center">
+                    <a href="#" class="w-[50px] h-[50px] rounded-full bg-white p-[2px] mr-[10px] hover:bg-red-700"><img src="/images/footer/fbico.png" alt="fb-icon" class="w-full h-full"></a>
+                    <a href="#" class="w-[50px] h-[50px] rounded-full bg-white p-[2px] hover:bg-red-700"><img src="/images/footer/instaico.png" alt="insta-icon" class="w-full h-full"></a>
+                    <a href="#" class="w-[50px] h-[50px] rounded-full bg-white p-[2px] mt-[10px] hover:bg-red-700"><img src="/images/footer/twtico.png" alt="twttr-icon" class="w-full h-full"></a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-fit p-[20px] pt-0 bg-black flex justify-center items-center flex-col">
+            <div>Varad Pandit</div>
+            <div>TYBBA(CA) Project</div>
+        </div>
+    </footer>
+<% } %>
