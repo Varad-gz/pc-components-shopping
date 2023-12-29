@@ -116,7 +116,3 @@ module.exports = {
 
     Vendor: Vendor
 }
-
-/**UPDATE vendor_table
-SET is_approved = 1
-WHERE vendor_id = your_vendor_id;*/

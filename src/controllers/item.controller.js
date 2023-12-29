@@ -18,7 +18,6 @@ module.exports = {
                 }
                 data[0].product_image = images;
             }
-            console.log(data);
             res.render('content/item', {
                 id : id, 
                 data : data,

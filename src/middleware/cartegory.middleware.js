@@ -26,12 +26,4 @@ module.exports = {
         console.log(req.body);
         next();
     },
-
-    parseCatIdName: (req, res, next) => {
-        const catarr = (req.body.category).split(';;');
-        req.body.category_id = catarr[0];
-        req.body.category_name = catarr[1];
-        delete req.body.category;
-        next();
-    }
 }

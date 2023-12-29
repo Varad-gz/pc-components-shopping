@@ -1,9 +1,9 @@
 <main class="w-full text-white">
-    <div class="bg-[#0f0f0f] shadow-sm shadow-black p-[10px] w-full flex flex-col">
+    <div class="bg-[#0f0f0f] p-[10px] w-full flex flex-col">
         <div class="w-full py-[20px] border-b-[1px] border-[#2d2a2a]">
-            <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center">
+            <form action="/search" method="get" autocomplete="off" class="w-full flex justify-center">
                 <div class="w-[50%] flex flex-row h-[50px] shadow-md shadow-black">
-                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#1f1f1f]" placeholder="Search for a product..." name="prodQuery" required>
+                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-[#1f1f1f]" placeholder="Search for a product..." name="s" required>
                     <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 flex justify-center items-center">Search</button>
                 </div>
             </form>
@@ -11,7 +11,7 @@
         <div class=" w-full flex flex-row mt-[10px]">
             <% if (cats.length > 0) { %>
                 <aside class="w-[20%] h-fit py-[10px] mr-[10px] border-r-[1px] border-[#2d2a2a]">
-                    <div class="w-full text-center text-[20px]">Search by Category</div>
+                    <div class="w-full text-center text-[20px]">Categories</div>
                     <div class="flex flex-col items-center mt-[10px] pt-[10px]">
                         <% cats.forEach(element => { %>
                             <a href="/browse/get?category=<%- element.category_name %>" class="w-[90%] h-[40px] py-[10px] mb-[10px] bg-[#312f2f] hover:bg-[#424040] text-center"><span class="line-clamp-1 text-[16px] text-center"><%- element.alt_name %></span></a>
@@ -20,8 +20,10 @@
                 </aside>
             <% } %>
             <section class="w-full pb-[10px] px-[10px]">
-                <% if (typeof count != 'undefined') { %>
-                    <h1 class="ml-[10px] mt-[10px]"><%- count %> product(s) found</h1>
+                <% if (count === 1) { %>
+                    <h1 class="ml-[10px] mt-[10px]"><%- count %> product found</h1>
+                <% } else { %>
+                    <h1 class="ml-[10px] mt-[10px]"><%- count %> products found</h1>
                 <% } %>
                 <% products.forEach(element => { %>
                     <div class="w-full h-[200px] bg-[#1b1b1b] hover:bg-[#262626] mt-[20px]">
@@ -33,17 +35,17 @@
                                 <div class="text-[20px] line-clamp-2 pb-[5px] w-fit"><%- element.product_name %></div>
                                 <div class="w-full h-[2px] bg-[#2d2a2a]"></div>
                                 <div class="w-full">
-                                    <div class="w-full mt-[5px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
-                                    <div class="w-full text-[15px]">
+                                    <div class="w-full mt-[5px] text-[20px] text-[#9c9c9c]">&#8377; <%= element.unit_price%></div>
+                                    <div class="w-full text-[15px] font-bold">
                                         <% if (element.total_stock > 5) { %>
-                                            <span class="text-green-700">Instock</span>
+                                            <span class="text-green-600">Instock</span>
                                         <% } else if (element.total_stock > 0) { %>
                                             <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
                                         <% } else { %>
                                         <span class="text-red-600">Out of Stock</span>
                                         <% } %>
                                     </div>
-                                    <div class="w-full text-[15px] text-gray-300">Sold by <%= element.organization_name%></div>
+                                    <div class="w-full text-[15px] text-gray-300 italic">Sold by <%= element.organization_name%></div>
                                 </div>
                             </div>
                         </a>

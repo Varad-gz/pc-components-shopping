@@ -20,7 +20,7 @@ router.post('/catman/change', forAdmin, proxyController.postEditChanges);
 router.get('/catman/add', forAdmin, proxyController.getAddPopup);
 router.post('/catman/add', forAdmin, proxyController.postNewCategory);
 router.post('/catman/checkandadd', forAdmin, proxyController.delistProdsAndPostCat);
-router.get('/catman/del', forAdmin, proxyController.deleteCat);
+router.get('/catman/del', forAdmin, proxyController.deleteCat); //uses get but deletes the category, appropriate changes required
 
 //vendor approval
 router.post('/vendapp', forAdmin, proxyController.postVendorApprovalStatus)
@@ -28,8 +28,11 @@ router.post('/vendapp', forAdmin, proxyController.postVendorApprovalStatus)
 //admin creation
 router.post('/addadmin/postdata', forAdmin, securePassword, proxyController.postNewAdminCredentials)
 
-//add product
+//add product module
 router.get('/addprodgetcat', forVendor, proxyController.getSubcategoriesForVendor);
 router.post('/postproddata', forVendor, createFileUploadMiddleware('prodImage', defaultFilesConfig.MAX_FILES, defaultFilesConfig.MAX_SIZE), proxyController.postProdData);
+
+//delete product
+router.post('/delthisprod', forVendor, proxyController.deleteProdsProxyCtrl);
 
 module.exports = router;

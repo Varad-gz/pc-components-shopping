@@ -1,0 +1,26 @@
+<main class="w-full p-[10px] pt-0 text-white">
+    <div class="bg-[#151515] shadow-md shadow-black p-[10px] w-full flex justify-center flex-col items-center">
+        <div class="text-[20px]">Remove Products</div>
+        <% prods.forEach(element => { %>
+            <div class="w-full bg-[#1b1b1b] mt-[20px] flex flex-row h-full">
+                <div class="h-full p-[5px] pr-[10px] w-[250px]">
+                    <img src="<%- element.product_image %>" alt="" class="h-full w-full">
+                </div>
+                <div class="w-full p-[10px] flex flex-col">
+                    <div class="text-[20px] line-clamp-2 pb-[5px] w-fit"><%- element.product_name %></div>
+                    <div class="w-full h-[2px] bg-[#2d2a2a]"></div>
+                    <div class="w-full">
+                        <div class="w-full mt-[5px] text-[20px] text-gray-500">&#8377; <%= element.unit_price%></div>
+                        <div class="w-full text-[15px] text-yellow-500">Stock Left: <%= element.total_stock%></div>
+                    </div>
+                </div>
+                <div class="w-fit mx-[10px] pl-[10px] flex items-center border-l-[2px] border-[#2d2a2a]">
+                    <form action="/api/proxy/delthisprod" method="post" class="w-full">
+                        <input type="hidden" name="prodid" value="<%- element.product_id %>">
+                        <button type="submit" class="py-[10px] px-[20px] bg-red-700 hover:bg-red-800 w-fit h-fit">Remove</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>        
+    </div>
+</main>

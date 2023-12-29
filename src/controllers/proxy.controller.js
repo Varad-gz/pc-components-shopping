@@ -180,6 +180,25 @@ module.exports = {
         }
     },
 
+    deleteProdsProxyCtrl: async (req, res) => {
+        const body = {prodid: parseInt(req.body.prodid)};
+        try {
+            const response = await axios.post('http://localhost:3000/api/proxy/forvendor/deleteproduct', body, {
+                headers: {
+                    ...vendorHeader
+                }
+            });
+            req.flash(response.data.type, response.data.message);
+            res.redirect(response.data.redirectLink);
+        } catch (err) {
+            if (err.response && err.response.status === 403) {
+                res.redirect('/error/forbidden-page');
+            } else {
+                console.log(err);
+            }
+        }
+    },
+
     postProdData: async (req, res) => {
         const body = {...req.body};
         try {

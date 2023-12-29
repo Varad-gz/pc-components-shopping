@@ -47,7 +47,7 @@ const createFileUploadMiddleware = (fieldName, maxCount, fileSizeLimit) => {
         upload.array(fieldName, maxCount)(req, res, async (err) => {
             if(err) {
                 try {
-                    deleteFolderorInsertDb(folderPath)
+                    await deleteFolderorInsertDb(folderPath)
                 } catch (deleteError) {
                     req.flash('alertWithButton', `Process Failed!!`);
                     res.redirect('back');

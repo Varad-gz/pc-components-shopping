@@ -9,6 +9,7 @@ const vendorRoute = require('./vendor/vendor.route');
 const adminRoute = require('./admin/admin.route')
 const apiProxy = require('./api.proxy');
 const errorRoute = require('./error.route');
+const searchRoute = require('./search.route');
 const {ifAuthenticated} = require('../middleware/authentication.middleware');
 
 router.use('/api/proxy', apiProxy);
@@ -20,5 +21,6 @@ router.use('/browse', browseRoute);
 router.use('/item', itemRoute);
 router.use('/vendor', vendorRoute);
 router.use('/admin', adminRoute);
+router.use('/search', searchRoute);
 
 module.exports = router;

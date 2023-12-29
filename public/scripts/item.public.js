@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function disabledCheckStyle() {
-        if(submitButton.disabled === true) submitButton.setAttribute('style', 'background-color: #9A1B1A;');
+        if(submitButton.disabled === true) submitButton.setAttribute('style', 'background-color: #671717;');
         else submitButton.removeAttribute('style');
     }
 })

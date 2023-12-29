@@ -10,7 +10,7 @@ module.exports = {
             console.error(deleteError);
             try {
                 await insertPendingDeletion(path);
-                console.log('folder inserted')
+                console.log('folder inserted into db')
             } catch (insertError) {
                 console.error(insertError);
             }

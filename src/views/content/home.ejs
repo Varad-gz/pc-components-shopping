@@ -9,10 +9,10 @@
             <div class="ml-[10px] text-[25px] font-bold -650:hidden @500:text-[20px]">PC<br>Components<br>Shopping</div>
         </div>
         <div class="w-full absolute top-[220px] @1290:static p-[20px]">
-            <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center">
+            <form action="/search" method="get" autocomplete="off" class="w-full flex justify-center">
                 <div class="w-[700px] flex flex-row h-[50px] shadow-lg shadow-black">
-                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-gradient-to-r from-[#1e1e1e] via-[#191919] to-[#111111]" placeholder="Search for a product..." name="prodQuery" required>
-                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 flex justify-center items-center">Search</button>
+                    <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-gradient-to-r from-[#1e1e1e] via-[#191919] to-[#111111]" placeholder="Search for a product..." name="s" required id="prodQuery">
+                    <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 flex justify-center items-center" id="srchbtn">Search</button>
                 </div>
             </form>
         </div>

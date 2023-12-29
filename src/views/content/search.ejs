@@ -1,0 +1,37 @@
+<main class="w-full p-[10px] pt-0 text-white">
+    <div class="bg-[#0f0f0f] p-[10px] w-full flex flex-col">
+        <% if (typeof count != 'undefined') { %>
+            <% if (count === 1) { %>
+                <h1 class="ml-[10px] mt-[10px]"><%- count %> product found</h1>
+            <% } else { %>
+                <h1 class="ml-[10px] mt-[10px]"><%- count %> products found</h1>
+            <% } %>
+        <% } %>
+        <% products.forEach(element => { %>
+            <div class="w-full h-[200px] bg-[#1b1b1b] hover:bg-[#262626] mt-[20px]">
+                <a href="/item?id=<%- element.product_id%>" class="w-full flex flex-row h-full">
+                    <div class="h-full p-[5px] pr-[10px] w-[250px]">
+                        <img src="<%- element.product_image %>" alt="" class="h-full w-full">
+                    </div>
+                    <div class="w-full mr-[10px] p-[10px] flex flex-col">
+                        <div class="text-[20px] line-clamp-2 pb-[5px] w-fit"><%- element.product_name %></div>
+                        <div class="w-full h-[2px] bg-[#2d2a2a]"></div>
+                        <div class="w-full">
+                            <div class="w-full mt-[5px] text-[20px] text-gray-400">&#8377; <%= element.unit_price%></div>
+                            <div class="w-full text-[15px]">
+                                <% if (element.total_stock > 5) { %>
+                                    <span class="text-green-700">Instock</span>
+                                <% } else if (element.total_stock > 0) { %>
+                                    <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
+                                <% } else { %>
+                                <span class="text-red-600">Out of Stock</span>
+                                <% } %>
+                            </div>
+                            <div class="w-full text-[15px] text-gray-300">Sold by <%= element.organization_name%></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% }) %>
+    </div>
+</main>
