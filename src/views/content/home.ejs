@@ -1,12 +1,15 @@
 <main class="w-full text-white">
-    <!--<img src="/images/home/backgroundimage3.jpg" alt="bgimagepersonaluse" class="h-[700px] w-full" draggable="false">-->
-    <div class="relative">
-        <div class="w-full flex flex-col justify-center items-center bg-black relative pb-[30px]">
-            <img src="/images/navbar/transparent-logo.png" alt="logo" draggable="false">
-            <div class="w-[500px] text-center text-[22px] text-red-600 font-bold absolute top-[100px] left-[200px] cursor-default select-none">Elevate Your Build, Simplify Your Upgrade: Your Trusted Source for Quality PC Components.</div>
+    <div class="relative bg-black">
+        <div class="w-full flex flex-col justify-center items-center relative @1290:pt-[20px]">
+            <img src="/images/navbar/transparent-logo.png" alt="logo" draggable="false" class="@1290:hidden py-[20px]">
+            <div class="w-[500px] text-center text-[22px] text-red-600 font-bold absolute top-[140px] left-[200px] cursor-default select-none @1290:static @500:w-[400px] @500:px-[5px]">Elevate Your Build, Simplify Your Upgrade: Your Trusted Source for Quality PC Components.</div>
         </div>
-        <div class="w-full absolute top-[180px]">
-            <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center mt-[30px]">
+        <div class="w-full -1290:hidden flex flex-row justify-center items-center pt-[20px]">
+            <img src="/images/navbar/pcs-logo.png" alt="logo" class="h-[100px]">
+            <div class="ml-[10px] text-[25px] font-bold -650:hidden @500:text-[20px]">PC<br>Components<br>Shopping</div>
+        </div>
+        <div class="w-full absolute top-[220px] @1290:static p-[20px]">
+            <form action="/search" method="post" autocomplete="off" class="w-full flex justify-center">
                 <div class="w-[700px] flex flex-row h-[50px] shadow-lg shadow-black">
                     <input type="text" class="w-full p-[10px] pl-[20px] placeholder:text-[#aeacac] focus:outline-none truncate bg-gradient-to-r from-[#1e1e1e] via-[#191919] to-[#111111]" placeholder="Search for a product..." name="prodQuery" required>
                     <button type="submit" class="w-fit px-[20px] py-[10px] bg-red-700 text-white hover:bg-red-800 flex justify-center items-center">Search</button>

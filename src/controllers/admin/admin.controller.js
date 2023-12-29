@@ -1,4 +1,5 @@
 const adminModel = require('../../models/admin.model');
+const { comparePassword } = require('../../utils/passwordOperations');
 
 module.exports = {
     getLoginPage: (req, res) => {
@@ -16,18 +17,22 @@ module.exports = {
     },
     
     authenticateUser: async(req, res) => {
+        const body = req.body;
         try {
-            const {username, email, password} = req.body;
-            const arr = await adminModel.checkForAdmin(username, email, password);
-            if( arr.length != 0) {
-                req.session.loggedIn = {username: username, role: 'admin'}
+            const result = await adminModel.getLoginDetails(body.email, body.username)
+            if(result.length === 0) {
+                req.flash('alertWithButton', 'Incorrect username/email');
+                res.redirect('/admin/login');
+            } else if(await comparePassword(body.password, result[0].password) === true) {
+                req.session.loggedIn = {username: body.username, role: 'admin'}
                 req.flash('alert', 'Logged in successfully');
                 res.redirect('/admin/dashboard');
             } else {
-                req.flash('alert', 'Wrong Credentials');
+                req.flash('alertWithButton', 'Incorrect password');
                 res.redirect('/admin/login');
             }
         } catch (err) {
+            console.log(err);
             req.flash('alertWithButton', 'Unknown error occurred while logging in');
             res.redirect('/admin/login');
         }

@@ -8,6 +8,7 @@ const forVendorApiProxies = require('./proxies/vendor.proxies');
 const { backendLinkAuthenticate } = require('../middleware/proxy.middleware');
 const { createFileUploadMiddleware } = require('../middleware/multerMemory.middleware');
 const { defaultFilesConfig } = require('../../config/env');
+const { securePassword } = require('../middleware/hashing.middleware');
 
 router.use('/foradmin', backendLinkAuthenticate, forAdminApiProxies);
 router.use('/forvendor', backendLinkAuthenticate, forVendorApiProxies);
@@ -23,6 +24,9 @@ router.get('/catman/del', forAdmin, proxyController.deleteCat);
 
 //vendor approval
 router.post('/vendapp', forAdmin, proxyController.postVendorApprovalStatus)
+
+//admin creation
+router.post('/addadmin/postdata', forAdmin, securePassword, proxyController.postNewAdminCredentials)
 
 //add product
 router.get('/addprodgetcat', forVendor, proxyController.getSubcategoriesForVendor);

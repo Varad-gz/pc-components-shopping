@@ -44,7 +44,7 @@ User.prototype.addUser = function (personalInfoID) {
 
 module.exports = {
     checkUserExists : async (email) => {
-        sql_query = "select password, first_name, last_name, customer_id from customers where email = ?;";
+        const sql_query = "select password, first_name, last_name, customer_id from customers where email = ?;";
         try {
             return await pquery(sql_query, email);
         } catch (err) {

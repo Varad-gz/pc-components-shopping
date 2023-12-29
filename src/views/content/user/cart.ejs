@@ -1,6 +1,34 @@
 <main class="w-full p-[10px] text-white">
+    <div class="w-full h-fit rounded-lg border-[1px] p-[10px] mb-[10px] border-yellow-500 flex flex-row items-center">
+        <div class="w-[30px] h-[30px] border-[1px] border-yellow-500 rounded-full p-[5px] text-yellow-500 flex justify-center items-center">!</div><div class="w-full ml-[10px]">Created exclusively for design purposes, this webpage is yet to be implemented.</div>
+    </div>
     <div class="bg-[#1F1E1E] shadow-md shadow-black p-[20px] w-full flex justify-center flex-col items-center">
         <div class="text-[20px] w-full text-left pb-[10px] border-b-[1px] border-[#2d2a2a] mb-[10px]">My Cart</div>
+        <div class="w-full flex flex-row h-full mb-[10px]">
+            <div class="w-full h-[150px] bg-[#312f2f]">
+                <a href="#" class="w-full flex flex-row h-full">
+                    <div class="h-full p-[5px] pr-[10px]">
+                        <img src="/images/products/51iji7Gel-L._SX679_.jpg" alt="" class="h-full">
+                    </div>
+                    <div class="w-full mr-[10px] p-[10px]">
+                        <div class="text-[20px] line-clamp-2 border-b-[1px] border-[#4a4646] pb-[5px]">product name</div>
+                        <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; 121212</div>
+                        <div class="w-full text-[15px]">
+                            <span class="text-green-700">Instock</span>
+                        </div>
+                        <div class="w-full text-[15px] text-gray-300">Sold by vendor1111</div>
+                    </div>
+                </a>
+            </div>
+            <div class="w-[20%] bg-[#312f2f] h-[150px] border-l-[1px] border-[#4a4646] flex justify-center items-center flex-col p-[10px]">
+                <div class="flex flex-row items-center shadow-md shadow-black w-full">
+                    <input type="text" class="w-full py-[10px] h-[40px] bg-[#3b3838] outline-none text-center" value="1" readonly id="quantity">
+                    <button type="button" class="bg-red-700 hover:bg-red-800 w-fit h-[40px] px-[20px] py-[10px] flex items-center border-[1px] border-red-900" id="quantminus">-</button>
+                    <button type="button" class="bg-red-700 hover:bg-red-800 w-fit h-[40px] px-[20px] py-[10px] flex items-center border-[1px] border-red-900" id="quantadd">+</button>
+                </div>
+                <button type="button" class="bg-red-700 hover:bg-red-800 w-fit h-[35px] px-[20px] py-[10px] flex items-center mt-[20px]">Remove from Cart</button>
+            </div>
+        </div>
         <div class="w-full flex flex-row h-full">
             <div class="w-full h-[150px] bg-[#312f2f]">
                 <a href="#" class="w-full flex flex-row h-full">
@@ -9,7 +37,7 @@
                     </div>
                     <div class="w-full mr-[10px] p-[10px]">
                         <div class="text-[20px] line-clamp-2 border-b-[1px] border-[#4a4646] pb-[5px]">product name</div>
-                        <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; 696969</div>
+                        <div class="w-full mt-[10px] pt-[10px] text-[20px] text-gray-400">&#8377; 121212</div>
                         <div class="w-full text-[15px]">
                             <span class="text-green-700">Instock</span>
                         </div>
@@ -28,17 +56,3 @@
         </div>
     </div>
 </main>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let quantity = document.getElementById('quantity');
-        document.getElementById('quantminus').addEventListener('click', () => {
-            if(quantity.value > 1) {
-                quantity.value = parseInt(quantity.value) - 1
-            }
-        })
-        document.getElementById('quantadd').addEventListener('click', () => {
-            quantity.value = parseInt(quantity.value) + 1
-        })
-    })
-</script>

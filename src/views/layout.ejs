@@ -37,12 +37,8 @@
             <% } %>
     
             <%- body %>
-        
-            <% if (typeof footer != 'undefined') { %>
-                <%- include('partials/footer', {footer : footer}) %>
-            <% } else { %>
-                <%- include('partials/footer') %>
-            <% } %>
+
+            <%- include('partials/footer') %>
         
             <%- include('content/popupflash') %>
         </body>

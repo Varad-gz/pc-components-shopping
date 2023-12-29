@@ -200,6 +200,25 @@ module.exports = {
         }
     },
 
+    postNewAdminCredentials: async (req, res) => {
+        const body = req.body;
+        try {
+            const response = await axios.post('http://localhost:3000/api/proxy/foradmin/postadmincredentials', body, {
+                headers: {
+                    ...adminHeader
+                }
+            });
+            req.flash(response.data.type, response.data.message);
+            res.redirect(response.data.redirectLink);
+        } catch (err) {
+            if (err.response && err.response.status === 403) {
+                res.redirect('/error/forbidden-page');
+            } else {
+                console.log(err);
+            }
+        }
+    },
+
     postVendorApprovalStatus: async (req, res) => {
         const body = req.body;
         try {

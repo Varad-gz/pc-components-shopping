@@ -24,7 +24,7 @@ Product.prototype.add = async function() {
 module.exports = {
 
     getAll: async () => { 
-        const sql_query = `select p.product_id, p.product_name, p.unit_price, p.total_stock, p.product_description, p.category_id, p.product_image, v.organization_name from products p join vendor_table v on p.vendor_id = v.vendor_id where p.delisted = 0;`
+        const sql_query = `select p.product_id, p.product_name, p.unit_price, p.total_stock, p.product_description, p.category_id, p.product_image, v.organization_name, c.category_name from products p join vendor_table v on p.vendor_id = v.vendor_id join new_category c on p.category_id = c.category_id where p.delisted_id_ref is null;`
         try {
             return await pquery(sql_query);
         } catch (err) {
@@ -54,46 +54,48 @@ module.exports = {
     },
 
     getByCatname: async (category_name) => {
-        const sql_query = `WITH RECURSIVE CategoryHierarchy AS (
-            SELECT
+        const sql_query = 
+        `WITH RECURSIVE CategoryHierarchy AS (
+            SELECT 
                 category_id,
                 category_name,
-                category_depth,
                 category_id_ref
-            FROM
+            FROM 
                 new_category
-            WHERE
+            WHERE 
                 category_name = ?
-            UNION
-            SELECT
-                nc.category_id,
-                nc.category_name,
-                nc.category_depth,
-                nc.category_id_ref
-            FROM
-                new_category nc
-            JOIN
-                CategoryHierarchy ch ON nc.category_id_ref = ch.category_id
+        
+            UNION ALL
+        
+            SELECT 
+                c.category_id,
+                c.category_name,
+                c.category_id_ref
+            FROM 
+                new_category c
+            JOIN 
+                CategoryHierarchy ch ON ch.category_id = c.category_id_ref
         )
-        SELECT
+        SELECT 
             p.product_id,
             p.product_name,
             p.unit_price,
             p.total_stock,
             p.product_description,
             p.category_id,
+            c.category_name,
+            p.product_image, 
             v.organization_name
-        FROM
+        FROM 
             products p
-        JOIN
+        JOIN 
             new_category c ON p.category_id = c.category_id
-        JOIN
-            vendor_table v ON p.vendor_id = v.vendor_id
-        JOIN
+        JOIN 
             CategoryHierarchy ch ON c.category_id = ch.category_id
-        LEFT JOIN
-            new_category pc ON c.category_id_ref = pc.category_id;`
-        
+        JOIN
+            vendor_table v on v.vendor_id = p.vendor_id
+        WHERE p.delisted_id_ref IS NULL;`;
+
         const sql_values = [category_name];
         try {
             return await pquery(sql_query, sql_values);

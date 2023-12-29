@@ -69,9 +69,19 @@ module.exports = {
         });
     },
 
-    getCategoriesWithRef : (id) => {
+    getCategoriesWithRef : async (id) => {
+        const sql_values = [id];
+        const sql_query = `select category_id, category_name, alt_name, category_depth from new_category where category_id_ref = ?;`;
+        try {
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        } 
+    },
+
+    getCategoriesWithRefName : (name) => {
         return new Promise((resolve, reject) => {
-            sql_db.query("select category_id, category_name, alt_name, category_depth from new_category where category_id_ref = ?;", id, (err, result) => {
+            sql_db.query("select category_id, category_name, alt_name from new_category where category_id_ref = (select category_id from new_category where category_name = ?);", name, (err, result) => {
                 if(err) reject(err)
                 resolve(result);
             });

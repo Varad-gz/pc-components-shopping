@@ -11,6 +11,6 @@ router.get('/registration', userController.getRegistrationPage)
 router.post('/registration', securePassword, userController.registerTheUser)
 router.get('/logout', forUser, userController.userLogout)
 router.get('/cart', forUser, userController.getCartPage)
-router.post('/item', forUser, userController.addToCart)
+router.post('/additemtocart', forUser, userController.addToCart)
 
 module.exports = router;

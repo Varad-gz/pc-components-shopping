@@ -15,8 +15,8 @@ module.exports = {
                 next();
             }
         }else {
-            if(req.originalUrl === '/item') {
-                const prodLink = req.originalUrl + '?id=' + req.body.itemId;
+            if(req.originalUrl === '/additemtocart') {
+                const prodLink = '/item' + '?id=' + req.body.itemId;
                 req.session.prodLink = prodLink;
             }
             res.redirect('/login');
@@ -63,6 +63,9 @@ module.exports = {
                 }
             }
         } else {
+            if(req.session.prodLink && req.originalUrl != '/login'){
+                delete req.session.prodLink;
+            } 
             req.body.loggedIn = [];
             next();
         }

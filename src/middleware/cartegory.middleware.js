@@ -23,6 +23,7 @@ module.exports = {
         depthkeysarr.forEach(element => {
             delete req.body[`${element}`]
         })
+        console.log(req.body);
         next();
     },
 

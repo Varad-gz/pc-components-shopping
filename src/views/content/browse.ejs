@@ -9,15 +9,17 @@
             </form>
         </div>
         <div class=" w-full flex flex-row mt-[10px]">
-            <aside class="w-[20%] h-fit py-[10px]">
-                <div class="w-full text-center text-[20px]">Search by Category</div>
-                <div class="flex flex-col items-center mt-[10px] pt-[10px]">
-                    <% cats.forEach(element => { %>
-                        <a href="/api/proxy/getitems?category=<%- element.category_name %>" class="w-[90%] h-[40px] py-[10px] mb-[10px] bg-[#312f2f] hover:bg-[#424040] text-center"><span class="line-clamp-1 text-[16px] text-center"><%- element.alt_name %></span></a>
-                    <% }) %>
-                </div>
-            </aside>
-            <section class="w-[80%] pb-[10px] ml-[10px] border-l-[1px] border-[#2d2a2a] px-[10px]">
+            <% if (cats.length > 0) { %>
+                <aside class="w-[20%] h-fit py-[10px] mr-[10px] border-r-[1px] border-[#2d2a2a]">
+                    <div class="w-full text-center text-[20px]">Search by Category</div>
+                    <div class="flex flex-col items-center mt-[10px] pt-[10px]">
+                        <% cats.forEach(element => { %>
+                            <a href="/browse/get?category=<%- element.category_name %>" class="w-[90%] h-[40px] py-[10px] mb-[10px] bg-[#312f2f] hover:bg-[#424040] text-center"><span class="line-clamp-1 text-[16px] text-center"><%- element.alt_name %></span></a>
+                        <% }) %>
+                    </div>
+                </aside>
+            <% } %>
+            <section class="w-full pb-[10px] px-[10px]">
                 <% if (typeof count != 'undefined') { %>
                     <h1 class="ml-[10px] mt-[10px]"><%- count %> product(s) found</h1>
                 <% } %>

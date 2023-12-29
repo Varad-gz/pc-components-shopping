@@ -1,5 +1,5 @@
 const {getAll, getByCatname, getSearchedProds, getAllCount} = require('../models/product.model');
-const {getRootCategory, getCategoriesWithRef, getAllCategories} = require('../models/category.model');
+const {getRootCategory, getCategoriesWithRefName} = require('../models/category.model');
 
 const fs = require('fs');
 const path = require('path');
@@ -13,10 +13,10 @@ getRootProductsPage : async(req, res) => {
 
         for (const item of items) {
             if(item.product_image === 'noimg') {
-                item.product_image = path.join('images', 'uploads', 'default', 'noimg.png');
+                item.product_image = path.join('/', 'images', 'uploads', 'default', 'noimg.png');
             } else {
                 let images = await fs.promises.readdir(item.product_image);
-                item.product_image = path.join('images', 'uploads', item.product_image.split('\\').pop(), images[0]);
+                item.product_image = path.join('/', 'images', 'uploads', item.product_image.split('\\').pop(), images[0]);
             }
         }
 
@@ -33,33 +33,22 @@ getRootProductsPage : async(req, res) => {
 },
 getProductsByCatPage : async(req, res) => {
     try {
-        const category_id = req.body.category_id;
-        const category_name = req.body.category_name;
-        const cats = await getCategoriesWithRef(category_id);
-        const items = await getByCatname(category_name);
+        const catName = req.query.category;
+        const cats = await getCategoriesWithRefName(catName);
+        const items = await getByCatname(catName);
+
+        for (const item of items) {
+            if(item.product_image === 'noimg') {
+                item.product_image = path.join('/', 'images', 'uploads', 'default', 'noimg.png');
+            } else {
+                let images = await fs.promises.readdir(item.product_image);
+                item.product_image = path.join('/', 'images', 'uploads', item.product_image.split('\\').pop(), images[0]);
+            }
+        }
 
         res.render('content/browse', {
             title: 'Browse', 
-            cat : cats, 
-            products : items,
-            loggedIn: req.body.loggedIn,
-        });
-
-    } catch(err) {
-        console.log(err)
-    }
-},
-
-getProductsByCatPage : async(req, res) => {
-    try {
-        const category_id = req.body.category_id;
-        const category_name = req.body.category_name;
-        const cats = await getCategoriesWithRef(category_id);
-        const items = await getByCatname(category_name);
-
-        res.render('content/browse', {
-            title: 'Browse', 
-            cat : cats, 
+            cats : cats, 
             products : items,
             loggedIn: req.body.loggedIn,
         });

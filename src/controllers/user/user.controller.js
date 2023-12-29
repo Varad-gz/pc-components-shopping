@@ -26,9 +26,10 @@ module.exports = {
     },
 
     addToCart: async (req, res) => {
-        const itemId = req.body.itemId;
+        const body = req.body;
         const userId = req.session.loggedIn.userid;
-        console.log(itemId, userId);
+        console.log(body);
+        console.log('user:' +  userId);
     },
 
     registerTheUser: async(req, res) => {

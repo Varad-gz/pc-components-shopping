@@ -1,0 +1,14 @@
+<main class="w-full flex justify-center mt-[20px]">
+    <div class="bg-[#1F1E1E] p-[20px] w-[500px] flex flex-col items-center text-white shadow-lg shadow-black">
+        <div class="text-[20px]">Establish Admin Credentials</div>
+        <form method="post" action="/api/proxy/addadmin/postdata" class="w-full" autocomplete="off">
+            <input type="text" id="username" placeholder="Username" name="username" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <input type="email" id="email" placeholder="Email-ID" name="email" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <input type="password" id="password" placeholder="Password" name="password" class="w-full my-[10px] h-[40px] bg-[#312f2f] focus:bg-[#424040] focus:outline-none pl-[10px] placeholder:text-[#aeacac]" required>
+            <div class="flex w-full mt-[20px] justify-center">
+                <button type="reset" class="bg-red-700 hover:bg-red-800 w-full h-[35px] mr-[20px]">Clear</button>
+                <button type="submit" class="bg-red-700 hover:bg-red-800 w-full h-[35px]">Create</button>
+            </div>
+        </form>
+    </div>
+</main>
