@@ -6,6 +6,8 @@ const { deleteFolderorInsertDb } = require("../utils/deleteUnnecessayUploads");
 
 const createFileUploadMiddleware = (fieldName, maxCount, fileSizeLimit) => {
     return (req, res, next) => {
+        let isFirstFile = true;
+        let fileIndex = 5;
         const folderName = uuidv4();
         const folderPath = path.join('D:', 'TYBBACA Ecommerce Project', 'find_comp_components', 'public', 'images', 'uploads', folderName);
 
@@ -22,9 +24,16 @@ const createFileUploadMiddleware = (fieldName, maxCount, fileSizeLimit) => {
             },
             filename: (req, file, cb) => {
                 try {
-                    const uniqueFilename = uuidv4();
                     const fileExtension = path.extname(file.originalname);
-                    const fullFilename = `${uniqueFilename}${fileExtension}`;
+                    let filenamePrefix; 
+                    if((file.originalname).split('.')[0] === 'main' && isFirstFile === true) {
+                        filenamePrefix = '1';
+                        isFirstFile = false;
+                    } else {
+                        filenamePrefix = `${fileIndex}`;
+                        fileIndex++;
+                    }
+                    const fullFilename = `${filenamePrefix}${fileExtension}`;
                     cb(null, fullFilename);
                 } catch (err) {
                     cb(err);

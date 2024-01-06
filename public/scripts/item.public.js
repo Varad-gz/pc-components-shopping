@@ -32,4 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if(submitButton.disabled === true) submitButton.setAttribute('style', 'background-color: #671717;');
         else submitButton.removeAttribute('style');
     }
+
+    document.getElementById('gobck').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.history.back();
+    })
 })

@@ -23,7 +23,7 @@ module.exports = {
             const cat = await Category.getCategoriesWithRef(catId);
             res.send(cat);
         } catch (err) {
-            console.log(err);
+            throw err;
         }
     },
 
@@ -45,14 +45,20 @@ module.exports = {
             const resInfo = {
                 type: 'alert',
                 message: 'Category updated successfully...',
-                redirectLink: '/admin/dashboard'
+                redirectLink: 'back'
             }
             res.json(resInfo);
         } catch (err) {
+            let message;
+            if(err.code === 'ER_DUP_ENTRY'){
+                message = 'category name must be unique!';
+            } else {
+                message = err.message;
+            }
             const resInfo = {
-                type: 'alert',
-                message: ['Error Message', 'Process Failed!'],
-                redirectLink: '/admin/dashboard/manage-category'
+                type: 'alertWithButton',
+                message: ['Error Message:', message],
+                redirectLink: 'back'
             }
             res.json(resInfo);
         }
@@ -70,14 +76,20 @@ module.exports = {
             const resInfo = {
                 type: 'alert',
                 message: 'Category added successfully...',
-                redirectLink: '/admin/dashboard'
+                redirectLink: 'back'
             }
             res.json(resInfo);
         } catch (err) {
+            let message;
+            if(err.code === 'ER_DUP_ENTRY'){
+                message = 'category name must be unique!';
+            } else {
+                message = err.message;
+            }
             const resInfo = {
-                type: 'alert',
-                message: ['Error Message', 'Process Failed!'],
-                redirectLink: '/admin/dashboard/manage-category'
+                type: 'alertWithButton',
+                message: ['Error Message:', message],
+                redirectLink: 'back'
             }
             res.json(resInfo);
         }
@@ -96,14 +108,20 @@ module.exports = {
             const resInfo = {
                 type: 'alert',
                 message: 'Category added successfully...',
-                redirectLink: '/admin/dashboard'
+                redirectLink: 'back'
             }
             res.json(resInfo);
         } catch (err) {
+            let message;
+            if(err.code === 'ER_DUP_ENTRY'){
+                message = 'category name must be unique!';
+            } else {
+                message = err.message;
+            }
             const resInfo = {
-                type: 'alert',
-                message: ['Error Message', 'Process Failed!'],
-                redirectLink: '/admin/dashboard/manage-category'
+                type: 'alertWithButton',
+                message: ['Error Message:', message],
+                redirectLink: 'back'
             }
             res.json(resInfo);
         }
@@ -127,24 +145,22 @@ module.exports = {
             const resInfo = {
                 type: 'alert',
                 message: 'Category deleted successfully...',
-                redirectLink: '/admin/dashboard'
+                redirectLink: 'back'
             }
             res.json(resInfo);
         } catch (err) {
+            let message;
             if(err.code === 'ER_ROW_IS_REFERENCED_2'){
-                const resInfo = {
-                    type: 'alertWithButton',
-                    message: ['Cannot Delete:', 'category includes products and/or subcategories'],
-                    redirectLink: '/admin/dashboard/manage-category'
-                }
-                res.json(resInfo);
+                message = 'category includes products and/or subcategories';
             } else {
-                console.log(err);
+                message = err.message;
             }
+            const resInfo = {
+                type: 'alertWithButton',
+                message: ['Error Message:', message],
+                redirectLink: 'back'
+            }
+            res.json(resInfo);
         }
     },
-
-    delistItems: (req, res) => {
-        
-    }
 }

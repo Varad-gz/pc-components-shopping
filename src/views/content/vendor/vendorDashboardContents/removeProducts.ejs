@@ -3,8 +3,8 @@
         <div class="text-[20px]">Remove Products</div>
         <% prods.forEach(element => { %>
             <div class="w-full bg-[#1b1b1b] mt-[20px] flex flex-row h-full">
-                <div class="h-full p-[5px] pr-[10px] w-[250px]">
-                    <img src="<%- element.product_image %>" alt="" class="h-full w-full">
+                <div class="w-[240px] h-[190px] m-[5px] p-[5px] flex items-center bg-white overflow-hidden">
+                    <img src="<%- element.product_image %>" alt="<%- element.product_name %>" class="w-full">
                 </div>
                 <div class="w-full p-[10px] flex flex-col">
                     <div class="text-[20px] line-clamp-2 pb-[5px] w-fit"><%- element.product_name %></div>

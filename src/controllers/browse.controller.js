@@ -1,4 +1,4 @@
-const {getAll, getByCatname, getSearchedProds, getAllCount, getCountWithCat} = require('../models/product.model');
+const {getAll, getByCatname, getSearchedProds, getAllCount, getCountWithCat, getByCatnameRandLimit} = require('../models/product.model');
 const {getRootCategory, getCategoriesWithRefName} = require('../models/category.model');
 
 const fs = require('fs');
@@ -7,18 +7,28 @@ const path = require('path');
 module.exports = {
     getBrowsePage : async(req, res) => {
         try {
-            let cats, items, count;
+            let catdata, items, count, categories = [];
             if(req.query.category != undefined) {
                 const catName = req.query.category;
-                cats = await getCategoriesWithRefName(catName);
+                catdata = (await getCategoriesWithRefName(catName)).map(cat => [cat.category_name, cat.alt_name]);
                 items = await getByCatname(catName);
                 count = await getCountWithCat(catName);
             } else {
-                cats = await getRootCategory();
+                catdata = (await getRootCategory()).map(cat => [cat.category_name, cat.alt_name]);
                 items = await getAll();
                 count = await getAllCount();
             }
-            
+
+            for(let i = 0; i < catdata.length; i++) {
+                const [data] = await getCountWithCat(catdata[i][0]);
+                if(data.prod_count != 0) {
+                    let newprod = {};
+                    newprod.category_name = catdata[i][0];
+                    newprod.alt_name = catdata[i][1];
+                    categories.push(newprod);
+                }
+            }
+
             for (const item of items) {
                 if(item.product_image === 'noimg') {
                     item.product_image = path.join('/', 'images', 'uploads', 'default', 'noimg.png');
@@ -30,7 +40,7 @@ module.exports = {
 
             res.render('content/browse', {
                 title: 'Browse', 
-                cats : cats, 
+                cats : categories, 
                 products : items,
                 loggedIn: req.body.loggedIn,
                 count: count[0].prod_count

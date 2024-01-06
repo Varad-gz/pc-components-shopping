@@ -116,5 +116,23 @@ module.exports = {
         });
     },
 
+    getCatRootLink: async(category_name) => {
+        const sql_query = `
+        WITH RECURSIVE CategoryHierarchy AS 
+        (
+            SELECT category_id, category_id_ref, alt_name, category_name FROM new_category WHERE category_name = ?
+            UNION ALL
+            SELECT  c.category_id, c.category_id_ref, c.alt_name, c.category_name FROM new_category c JOIN CategoryHierarchy ch ON c.category_id = ch.category_id_ref
+        )
+        SELECT alt_name, category_name FROM CategoryHierarchy;`
+
+        const sql_values = [category_name];
+        try {
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            throw err;
+        }
+    },
+
     Category : Category
 }

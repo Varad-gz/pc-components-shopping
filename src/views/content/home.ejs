@@ -16,57 +16,57 @@
                 </div>
             </form>
         </div>
-        <div class="bg-[#F6F6F6] flex flex-col text-black p-[20px]">
-            <div class="text-[25px] flex flex-col mb-[20px]">
+        <div class="bg-[#F6F6F6] flex flex-col text-black px-[10px] py-[20px]">
+            <div class="text-[25px] flex flex-col mb-[20px] px-[20px]">
                 Browse
                 <div class="w-[60px] h-[4px] bg-red-700"></div>
             </div>
-
+            <% products.forEach(product => { %>
+                <div class="flex flex-col select-none">
+                    <div class="flex flex-row my-[10px] items-center px-[20px]">
+                        <div class="text-[25px]"><%- product.altName %></div>
+                        <div class="w-full bg-black h-[2px] mx-[10px]"></div>
+                        <a href="/browse/get?category=<%- product.catName %>"><button class="text-[20px] bg-red-700 hover:bg-red-800 py-[5px] px-[20px] text-white">Browse</button></a>
+                    </div>
+                    <div class="flex flex-row w-full items-center" id="prodsrow">
+                        <% if (product.data.length > 6) { %>
+                            <button class="w-[35px] h-[35px] bg-[#eeeeee] hover:bg-[#d4d4d4] p-[5px] rounded-full flex justify-center items-center" id="leftbtn" value="<%- product.catName %>" onmousedown="hold(this.value, this.id)" onmouseup="notHolding()">
+                                <img src="/images/home/arrow2.png" alt="arrow" class="-scale-x-100" draggable="false">
+                            </button>
+                        <% } %>
+                        <div class="w-full flex flex-row overflow-x-scroll scrollbar-none mx-[10px] my-[10px]" id="<%- product.catName %>">
+                            <% product.data.forEach(data => { %>
+                                <a href="/item?id=<%- data.product_id %>" class="mr-[20px] p-[10px]">
+                                    <div class="w-[250px] h-[370px] bg-white rounded-lg cursor-pointer flex flex-col items-center overflow-hidden shadow-md shadow-gray-400" id="prodof<%- data.product_id %>" onmouseover="styleProdText(this.id)" onmouseleave="removeProdTextStyle(this.id)">
+                                        <div class="w-[230px] h-[230px] p-[5px]">
+                                            <div class="w-full h-full p-[10px] bg-white flex justify-center items-center rounded-lg">
+                                                <img src="<%- data.product_image %>" alt="<%- data.product_name %>" class="w-full">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col px-[10px] font-bold">
+                                            <div class="line-clamp-2" id="prodName"><%- data.product_name %></div>
+                                            <div class="mt-[5px] text-gray-500">&#8377;<%- data.unit_price %></div>
+                                            <% if (data.total_stock > 5) { %>
+                                                <div class="text-green-600">Instock</div>
+                                            <% } else if (data.total_stock > 0) { %>
+                                                <div class="text-orange-600">Stock Left: <%= data.total_stock%></div>
+                                            <% } else { %>
+                                                <div class="text-red-600">Out of Stock</div>
+                                            <% } %>
+                                            <div class="text-slate-700 italic">Sold by <%= data.organization_name%></div>
+                                        </div>
+                                    </div>
+                                </a>
+                            <% }) %>
+                        </div>
+                        <% if (product.data.length > 6) { %>
+                            <button class="w-[35px] h-[35px] bg-[#eeeeee] hover:bg-[#d4d4d4] p-[5px] rounded-full flex justify-center items-center" id="rightbtn" value="<%- product.catName %>" onmousedown="hold(this.value, this.id)" onmouseup="notHolding()">
+                                <img src="/images/home/arrow2.png" alt="arrow">
+                            </button>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
         </div>
     </div>
 </main>
-
-<!--
-    <div id="gpu" class="w-[200px] h-[200px] hover:scale-[1.08] m-[5px] bg-black hover:shadow-lg hover:shadow-black relative">
-                <img id="img" src="/images/newcats/gpu.jpg" alt="graphics-card" class="w-full h-full opacity-50 ">
-                <div class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center p-[10px] opacity-80 hover:opacity-100 cursor-pointer hover:z-5 text-2xl font-bold" onmouseover="document.getElementById('gpu').querySelector('#img').style.opacity = '0.4'" onmouseout="document.getElementById('gpu').querySelector('#img').removeAttribute('style')">GRAPHICS CARD</div>
-            </div>
-    <div class="flex flex-row flex-wrap justify-center mt-[20px]">
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/cpu.png" alt="cpu" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/graphic-card.png" alt="gpu" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/hdd.png" alt="hdd" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/psu.png" alt="psu" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/motherboard.png" alt="motherboard" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/ram.png" alt="ram" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
-            </div>
-            <div class="w-[150px] h-[150px] hover:bg-[#c80011] hover:border-[1px] hover:border-black p-[5px] m-[5px]">
-                <img src="/images/categories/accessories.png" alt="accessories" class="w-full h-full">
-            </div>
-        </div>
--->

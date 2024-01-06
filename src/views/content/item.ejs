@@ -1,43 +1,53 @@
-<main class="w-full p-[20px] flex flex-col">
-    <% data.forEach(element => { %>
-        <div class="flex flex-row h-[350px]">
-            <div class="w-[300px]">
-                <div class="w-[240px] h-[240px] overflow-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-red-700 scrollbar-thumb-rounded-full scrollbar-track-[#0f0f0f]">
-                    <% element.product_image.forEach(image => { %>
-                        <img src="<%= image%>" class="shadow-md shadow-black rounded-lg w-full h-full p-[1px]">
-                    <% }) %>
-                </div>
-                <div class="text-white">
-                    <form action="/additemtocart" method="post">
-                        <input type="hidden" name="itemId" value="<%- id %>">
-                        <div class="flex flex-row items-center shadow-sm shadow-black w-full mt-[20px]">
-                            <button type="button" class="bg-red-700 hover:bg-red-800 w-[80px] h-[40px] px-[20px] py-[10px] flex items-center justify-center" id="quantminus">-</button>
-                            <input type="text" class="w-full py-[10px] h-[40px] bg-[#1F1E1E] outline-none text-center cursor-default" name="quantity" value="0" id="quantity" readonly>
-                            <button type="button" class="bg-red-700 hover:bg-red-800 w-[80px] h-[40px] px-[20px] py-[10px] flex items-center justify-center" id="quantadd">+</button>
-                        </div>
-                        <button type="submit" id="submitbtn" class="mt-[10px] bg-red-700 hover:bg-red-800 w-full h-[40px] px-[20px] py-[10px] flex items-center justify-center shadow-sm shadow-black" disabled>Add to Card</button>
-                    </form>
-                </div>
+<main class="w-full px-[20px] pb-[20px] flex flex-col">
+    <div class="text-[20px] text-white w-fit hover:text-red-700 my-[10px] cursor-pointer italic" id="gobck">&larr; Go Back</div>
+    <div class="w-full mb-[20px] flex flex-row items-center text-[17px] font-bold text-gray-100 select-none">
+        <% for( let i = 0; i < data.category_link.length; i++ ) { %>
+            <% if (i === 0) { %>
+                <a href="/browse"><div class="w-fit hover:text-red-700">Browse</div></a>
+            <% } %>
+            <div class="w-[10px] h-[2px] bg-white mx-[10px] -skew-y-[70deg]"></div>
+            <a href="/browse/get?category=<%- data.category_link[i][1] %>"><div class="w-fit hover:text-red-700"><%- data.category_link[i][0] %></div></a>
+        <% } %>
+    </div>
+    <div class="flex flex-row">
+        <div class="w-[300px]">
+            <div class="w-[250px] h-[250px] overflow-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-red-700 scrollbar-thumb-rounded-full scrollbar-track-[#0f0f0f]">
+                <% data.product_image.forEach(image => { %>
+                    <div class="w-full h-full p-[5px] bg-white flex justify-center items-center border-[2px] border-[#0f0f0f] rounded-lg">
+                        <img src="<%- image %>" class="w-full">
+                    </div>
+                <% }) %>
             </div>
-            <div class="w-full h-full bg-[#1F1E1E] shadow-md shadow-black p-[30px] ml-[20px]">
-                <div class="text-[20px] w-full text-white"><%= element.product_name %></div>
-                <div class="text-gray-500 text-[20px] my-[20px]">Price : &#8377; <%= element.unit_price %></div>
-                <input type="hidden" name="stock" id="stock" value="<%= element.total_stock %>">
-                <% if (element.total_stock > 5) { %>
-                    <span class="text-green-700">Instock</span>
-                <% } else if (element.total_stock > 0) { %>
-                    <span class="text-orange-600">Stock Left: <%= element.total_stock%></span>
-                <% } else { %>
-                    <span class="text-red-600">Out of Stock</span>
-                <% } %>
-                <div class="text-gray-400 text-[15px]">Sold by <%= element.organization_name %></div>
+            <div class="text-white">
+                <form action="/additemtocart" method="post">
+                    <input type="hidden" name="itemId" value="<%- id %>">
+                    <div class="flex flex-row items-center shadow-sm shadow-black w-full mt-[20px]">
+                        <button type="button" class="bg-red-700 hover:bg-red-800 w-[80px] h-[40px] px-[20px] py-[10px] flex items-center justify-center" id="quantminus">-</button>
+                        <input type="text" class="w-full py-[10px] h-[40px] bg-[#1F1E1E] outline-none text-center cursor-default" name="quantity" value="0" id="quantity" readonly>
+                        <button type="button" class="bg-red-700 hover:bg-red-800 w-[80px] h-[40px] px-[20px] py-[10px] flex items-center justify-center" id="quantadd">+</button>
+                    </div>
+                    <button type="submit" id="submitbtn" class="mt-[10px] bg-red-700 hover:bg-red-800 w-full h-[40px] px-[20px] py-[10px] flex items-center justify-center shadow-sm shadow-black" disabled>Add to Card</button>
+                </form>
             </div>
         </div>
-        <div class="w-full text-white mt-[20px]">
-            <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex flex-col">
-                <div class="mb-[10px] pb-[10px] border-b-[1px] border-[#2d2a2a]"><h1 class="text-[20px]">Product Description</h1></div>
-                <pre class="text-[16px]"><%= element.product_description%></pre>
-            </div>
+        <div class="w-full bg-[#1F1E1E] shadow-md shadow-black p-[30px] ml-[20px]">
+            <div class="text-[20px] w-full text-white"><%= data.product_name %></div>
+            <div class="text-gray-500 text-[20px] my-[20px]">Price : &#8377; <%= data.unit_price %></div>
+            <input type="hidden" name="stock" id="stock" value="<%= data.total_stock %>">
+            <% if (data.total_stock > 5) { %>
+                <span class="text-green-700">Instock</span>
+            <% } else if (data.total_stock > 0) { %>
+                <span class="text-orange-600">Stock Left: <%= data.total_stock%></span>
+            <% } else { %>
+                <span class="text-red-600">Out of Stock</span>
+            <% } %>
+            <div class="text-gray-400 text-[15px]">Sold by <%= data.organization_name %></div>
         </div>
-    <% }) %>
+    </div>
+    <div class="w-full text-white mt-[20px]">
+        <div class="bg-[#1F1E1E] shadow-md shadow-black p-[10px] w-full flex flex-col">
+            <div class="mb-[10px] pb-[10px] border-b-[1px] border-[#2d2a2a]"><h1 class="text-[20px]">Product Description</h1></div>
+            <pre class="text-[16px] whitespace-pre-wrap"><%= data.product_description%></pre>
+        </div>
+    </div>
 </main>
