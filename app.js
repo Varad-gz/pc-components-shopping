@@ -22,7 +22,7 @@ app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use(cookieParser());
 
 app.use(session({
-    secret: 'hellopcs',
+    secret: 'pcs',
     resave: false,
     saveUninitialized: true
 }));
@@ -36,13 +36,6 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
-
-app.get('/temp', (req, res) => {
-    res.render('temp', {
-        title: 'temp',
-        loggedIn: []
-    });
-})
 
 app.use(routes);
 

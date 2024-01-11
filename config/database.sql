@@ -12,7 +12,19 @@ CREATE TABLE IF NOT EXISTS admin (
     password VARCHAR(200) NOT NULL
 );
 
-INSERT INTO admin (username, email, password) VALUES ('admin', 'admin@temp.com', '$2b$10$OHghxZZ0uwrJBOoY9Y1bPOnk7B7CJJvLTRgtDz7HOyPcnPdr2fgJe');
+INSERT INTO admin (username, email, password) VALUES ('defadmin', 'admin@temp.com', '$2b$10$OHghxZZ0uwrJBOoY9Y1bPOnk7B7CJJvLTRgtDz7HOyPcnPdr2fgJe');
+
+-- Table: personal_info
+CREATE TABLE IF NOT EXISTS personal_info (
+    personal_info_id INT AUTO_INCREMENT PRIMARY KEY,
+    phone1 VARCHAR(50) NOT NULL,
+    phone2 VARCHAR(50),
+    address_line1 VARCHAR(70) NOT NULL,
+    address_line2 VARCHAR(70),
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    zip VARCHAR(50) NOT NULL
+);
 
 -- Table: customers
 CREATE TABLE IF NOT EXISTS customers (
@@ -53,66 +65,20 @@ CREATE TABLE IF NOT EXISTS new_category (
     FOREIGN KEY (category_id_ref) REFERENCES new_category(category_id)
 );
 
--- Table: order_items
-CREATE TABLE IF NOT EXISTS order_items (
-    item_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
-    product_id INT NOT NULL,
-    price_per_unit DOUBLE NOT NULL,
-    quantity INT NOT NULL,
-    item_amount DOUBLE GENERATED ALWAYS AS (price_per_unit * quantity) STORED,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-
--- Table: cart
-CREATE TABLE IF NOT EXISTS cart (
-    cart_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT NOT NULL,
-    unit_price DOUBLE NOT NULL,
-    total_amount DOUBLE GENERATED ALWAYS AS (unit_price * quantity) STORED,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
-);
-
--- Table: orders
-CREATE TABLE IF NOT EXISTS orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT NOT NULL,
-    order_amount INT NOT NULL,
-    shippers_id INT NOT NULL,
-    payment_id INT NOT NULL,
-    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    shipping_date DATE,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
-    FOREIGN KEY (shippers_id) REFERENCES shippers(shippers_id),
-    FOREIGN KEY (payment_id) REFERENCES payment(payment_id)
-);
-
--- Table: payment
-CREATE TABLE IF NOT EXISTS payment (
-    payment_id INT AUTO_INCREMENT PRIMARY KEY,
-    payment_type VARCHAR(50) NOT NULL,
-    is_allowed TINYINT(1) NOT NULL
-);
-
 -- Table: pending_image_deletions
 CREATE TABLE IF NOT EXISTS pending_image_deletions (
     pending_paths VARCHAR(300)
 );
 
--- Table: personal_info
-CREATE TABLE IF NOT EXISTS personal_info (
-    personal_info_id INT AUTO_INCREMENT PRIMARY KEY,
-    phone1 VARCHAR(50) NOT NULL,
-    phone2 VARCHAR(50),
-    address_line1 VARCHAR(70) NOT NULL,
-    address_line2 VARCHAR(70),
-    city VARCHAR(50) NOT NULL,
-    state VARCHAR(50) NOT NULL,
-    zip VARCHAR(50) NOT NULL
+-- Table: vendor_table
+CREATE TABLE IF NOT EXISTS vendor_table (
+    vendor_id INT AUTO_INCREMENT PRIMARY KEY,
+    organization_name VARCHAR(50) NOT NULL UNIQUE,
+    email_id VARCHAR(50) NOT NULL,
+    vendor_password VARCHAR(200) NOT NULL,
+    personal_info_id INT NOT NULL,
+    is_approved TINYINT(1) NOT NULL DEFAULT 0,
+    FOREIGN KEY (personal_info_id) REFERENCES personal_info(personal_info_id)
 );
 
 -- Table: products
@@ -144,18 +110,51 @@ CREATE TABLE IF NOT EXISTS shippers (
     phone VARCHAR(15) NOT NULL
 );
 
--- Table: vendor_table
-CREATE TABLE IF NOT EXISTS vendor_table (
-    vendor_id INT AUTO_INCREMENT PRIMARY KEY,
-    organization_name VARCHAR(50) NOT NULL UNIQUE,
-    email_id VARCHAR(50) NOT NULL,
-    vendor_password VARCHAR(200) NOT NULL,
-    personal_info_id INT NOT NULL,
-    is_approved TINYINT(1) NOT NULL DEFAULT 0,
-    FOREIGN KEY (personal_info_id) REFERENCES personal_info(personal_info_id)
+-- Table: payment
+CREATE TABLE IF NOT EXISTS payment (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    payment_type VARCHAR(50) NOT NULL,
+    is_allowed TINYINT NOT NULL
 );
 
-DROP PROCEDURE DelistAndAddCategory;
+-- Table: orders
+CREATE TABLE IF NOT EXISTS orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_amount INT NOT NULL,
+    shippers_id INT NOT NULL,
+    payment_id INT NOT NULL,
+    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    shipping_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (shippers_id) REFERENCES shippers(shippers_id),
+    FOREIGN KEY (payment_id) REFERENCES payment(payment_id)
+);
+
+-- Table: order_items
+CREATE TABLE IF NOT EXISTS order_items (
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    price_per_unit DOUBLE NOT NULL,
+    quantity INT NOT NULL,
+    item_amount DOUBLE GENERATED ALWAYS AS (price_per_unit * quantity) STORED,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Table: cart
+CREATE TABLE IF NOT EXISTS cart (
+    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    unit_price DOUBLE NOT NULL,
+    total_amount DOUBLE GENERATED ALWAYS AS (unit_price * quantity) STORED,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
 DELIMITER //
 CREATE PROCEDURE DelistAndAddCategory(
     IN p_categoryName VARCHAR(50),

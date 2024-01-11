@@ -4,7 +4,7 @@
   "description": "This is a web-based ecommerce application for PC components/peripherals.",
   "main": "app.js",
   "scripts": {
-    "app": "nodemon app.js",
+    "start": "nodemon app.js",
     "build:css": "postcss ./src/styles/tailwindcss.css -o ./public/stylesheet/main.css --watch",
     "watch:css": "npm run build:css -- --watch",
     "build:css-watch": "npx tailwindcss -i ./src/styles/tailwindcss.css -o ./public/stylesheet/main.css --watch"
