@@ -38,5 +38,25 @@ module.exports = {
         }
     },
 
+    deleteDefault : async () => {
+        const sql_query = "DELETE FROM admin WHERE username = ? AND email = ?;";
+        const sql_values = ["defadmin", "admin@temp.com"];
+        try {
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            console.log(err);
+        }
+    },
+
+    checkDefaultExists : async () => {
+        const sql_query = `select count(*) as adminexists from admin where username = ? and email = ?;`;
+        const sql_values = ["defadmin", "admin@temp.com"];
+        try {
+            return await pquery(sql_query, sql_values);
+        } catch (err) {
+            console.log(err);
+        }
+    },
+
     Admin: Admin
 }

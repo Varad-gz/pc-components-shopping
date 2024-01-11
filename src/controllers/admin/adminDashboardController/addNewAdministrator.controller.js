@@ -16,6 +16,9 @@ module.exports = {
     postAdminCredentials: async (req, res) => {
         const body = req.body;
         try{
+            if(body.username === "defadmin") {
+                throw Error("Invalid Username: Cannot set username to 'defadmin'.");
+            }
             if((await adminModel.checkIfEmailExists(body.email))[0].adminexists === 0) {
                 const adminObj = new adminModel.Admin(body);
                 await adminObj.add();
@@ -34,10 +37,9 @@ module.exports = {
                 res.json(resInfo);
             }
         } catch (err) {
-            console.log(err);
             const resInfo = {
                 type: 'alertWithButton',
-                message: ['Error Message', 'Process Failed!'],
+                message: ['Process Failed:', err.message],
                 redirectLink: '/admin/dashboard/add-new-admin'
             }
             res.json(resInfo);
