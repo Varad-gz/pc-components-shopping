@@ -2,6 +2,7 @@
 
 PC Components Shopping is an e-commerce website for purchasing PC hardware and other accessories. It connects PC vendors to customers and provides an easy-to-navigate UI for all users.
 
+This project is developed as part of my SYBBACA (Second Year Bachelor of Business Administration in Computer Application) curriculum.
 
 ## Getting Started
 
@@ -14,14 +15,13 @@ Follow these instructions to set up and run the project on your local machine.
 
 ### Installation
 
-Clone the repository:
+Clone the repository & install dependencies:
 
    ```bash
    git clone https://github.com/Varad-gz/pc-components-shopping.git
    cd pc-components-shopping
    npm install
   ```
-
 
 ## Configuration
 
@@ -54,7 +54,6 @@ To set up the database for the project, follow these steps:
    - Replace placeholders (`your_...`) with your actual configuration values.
    - *Note:* By default, the database name is set to `pc_components_shopping`. You can change it if necessary.
 
-
 ## Start the Application:
    - After completing the above steps, you can start the application using the provided startup command:
      
@@ -63,7 +62,6 @@ To set up the database for the project, follow these steps:
      ```
      
    - Visit [http://localhost:your_port_number](http://localhost:your_port_number) in your browser to access the application.
-
 
 ## Default Admin Credentials
 
