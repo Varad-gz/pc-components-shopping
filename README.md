@@ -1,4 +1,4 @@
-# PC Components Shopping
+# PC Components Shopping (E-commerce Website)
 
 PC Components Shopping is an e-commerce website for purchasing PC hardware and other accessories. It connects PC vendors to customers and provides an easy-to-navigate UI for all users.
 
